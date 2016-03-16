@@ -16,8 +16,13 @@ if(CameraSimulate)
 	target_link_libraries(camera ${OpenCV_LIBS})
 	file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp" DESTINATION "${BIN_DIR}")
 
+	if (WIN32)
+	  install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp" DESTINATION "${CMAKE_INSTALL_PREFIX}")
+	else()
+	  #install(PROGRAMS )
+	endif()
 	
-	install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp" DESTINATION "${CMAKE_INSTALL_PREFIX}")
+	  
 	
 
 else(not CameraSimulate)
@@ -26,5 +31,8 @@ endif()
 
 
 
-
-install(TARGETS camera DESTINATION "${CMAKE_INSTALL_PREFIX}")
+if (WIN32)
+  install(TARGETS camera DESTINATION "${CMAKE_INSTALL_PREFIX}")
+else()
+  install(TARGETS camera DESTINATION "lib")
+endif()

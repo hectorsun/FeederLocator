@@ -10,5 +10,8 @@ add_executable(FeederLocator main.cpp)
 
 target_link_libraries(FeederLocator Qt5::Widgets camera)
 
-
-install(TARGETS FeederLocator DESTINATION "${CMAKE_INSTALL_PREFIX}")
+if(WIN32)
+  install(TARGETS FeederLocator DESTINATION "${CMAKE_INSTALL_PREFIX}")
+else()
+  install(TARGETS FeederLocator DESTINATION "bin")
+endif()
