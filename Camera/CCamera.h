@@ -1,6 +1,9 @@
+#ifndef CCAMERA_H
+#define CCAMERA_H
 
+#include "cameradef.h"
 
-class CCamera{
+class CAM_EXPORTS CCamera{
 public:
   CCamera(){}
   ~CCamera(){}
@@ -11,3 +14,6 @@ public:
 
 
 };
+
+
+#endif //CCAMERA_H
