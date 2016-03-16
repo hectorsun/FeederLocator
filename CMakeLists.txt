@@ -12,10 +12,11 @@ file(MAKE_DIRECTORY "${BIN_DIR}")
 #install setting
 #########################
 if(WIN32)
+  message(STATUS "WIN32")
   set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install"
     CACHE PATH "Install Path")
 else()
-  message("UNIX")
+  message(STATUS "UNIX")
   set(CMAKE_INSTALL_PREFIX "/usr/local/"
     CACHE PATH "Install Path")
 endif()

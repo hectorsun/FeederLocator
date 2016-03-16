@@ -5,12 +5,16 @@
 
 #include <CCamera.h>
 
+#include "CMainWindow.h"
+
+
 int main(int argc, char* argv[]){
   QApplication app(argc, argv);
-  QLabel* label = new QLabel("Hellp qt");
+
   CCamera::getInstance().init();
 
-  
-  label->show();
+  CMainWindow mainWin;
+  mainWin.show();
+
   return app.exec();
 }

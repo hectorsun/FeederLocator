@@ -1,15 +1,12 @@
-message("camera mode")
 
 project(camera)
 
 set(CameraSimulate CACHE BOOL "Read image from disk")
 add_definitions(-DCAMAPI_EXPORTS)
 
-message(get_property(LIBRARY_OUTPUT_DIRECTORY, GLOBAL))
-
 
 if(CameraSimulate)
-	message("CameraSimulate")
+	message(STATUS "CameraSimulate")
 	find_package(OpenCV REQUIRED)
 	include_directories(${OpenCV_INCLUDE_DIRS})
 	add_library(camera SHARED CCameraSimu.cpp)
