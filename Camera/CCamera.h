@@ -8,11 +8,22 @@ public:
   CCamera(){}
   ~CCamera(){}
 
-  
+  static CCamera& getInstance(){
+    static CCamera* ins = new CCamera();
+    return *ins;
+  }
+
+  //////////////////////////////////////////
   void init();
-  unsigned char* getData();
-
-
+  
+  //////////////////////////////////////////
+  int getWidht(){return m_imgWidth;}
+  int getHeight() {return m_imgHeight;}
+  unsigned char* getData() {return m_imgData;}
+private:
+  int m_imgWidth;
+  int m_imgHeight;
+  unsigned char*  m_imgData;
 };
 
 

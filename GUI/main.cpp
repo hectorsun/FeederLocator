@@ -8,8 +8,7 @@
 int main(int argc, char* argv[]){
   QApplication app(argc, argv);
   QLabel* label = new QLabel("Hellp qt");
-  CCamera* camera = new CCamera();
-  camera->init();
+  CCamera::getInstance().init();
 
   
   label->show();

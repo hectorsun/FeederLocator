@@ -7,7 +7,7 @@ project(FeederLocator)
 ##########################
 #install setting
 #########################
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install")
+set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "Install Path" FORCE)
 
 
 ##########################
