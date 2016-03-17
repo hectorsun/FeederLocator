@@ -3,6 +3,8 @@
 #include <QSplitter>
 #include <QIcon>
 
+#include <CCamera.h>
+
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -48,7 +50,15 @@ CMainWindow::createToolBars()
 void
 CMainWindow::snapAPicture()
 {
-
   cout<<"snap a picture"<<endl;
+
+  if (0 != CCamera::getInstance().snap()){
+    return;
+  }
+
+  // 
+  emit m_pPaint->refresh();
+
+  //
   m_pList->addItem(QString("snap a picture"));
 }

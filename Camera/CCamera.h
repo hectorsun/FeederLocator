@@ -15,9 +15,11 @@ public:
 
   //////////////////////////////////////////
   void init();
+
+  int snap();
   
   //////////////////////////////////////////
-  int getWidht(){return m_imgWidth;}
+  int getWidth(){return m_imgWidth;}
   int getHeight() {return m_imgHeight;}
   unsigned char* getData() {return m_imgData;}
 private:

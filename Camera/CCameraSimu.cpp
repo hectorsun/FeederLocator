@@ -4,13 +4,13 @@
 using std::cout;
 using std::endl;
 
+#include <memory>
 
 void 
 CCamera::init()
 {
   const char szPicPath[] = "./1.bmp";
   std::cout<<"CameraSimu CCamera::init()"<<std::endl;
-  //std::cout<<"PicPath="<<szPicPath<<std::endl;
   cv::Mat img = cv::imread(szPicPath);
   if (!img.data){
     cout<<"failed to load image"<<endl;
@@ -18,8 +18,17 @@ CCamera::init()
   }
   m_imgWidth = img.cols;
   m_imgHeight = img.rows;
-  m_imgData = img.data;
-  std::cout <<"width="<< m_imgWidth<<" ,height="<<m_imgHeight<<std::endl;
+  int l_size = img.elemSize()*img.cols*img.rows;
+  m_imgData = new unsigned char[l_size];
+  memcpy(m_imgData, img.data, l_size);
+  std::cout <<"width="<< m_imgWidth
+	    <<" ,height="<<m_imgHeight
+	    << ", size="<< l_size <<std::endl;
 }
 
-
+int
+CCamera::snap()
+{
+  cout<<"CCamera::snape()"<<endl;
+  return 0;
+}
