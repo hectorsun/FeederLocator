@@ -3,8 +3,10 @@ cmake_minimum_required(VERSION 2.8.8)
 #project(FeederLocator)
 set(LIB_DIR "${CMAKE_BINARY_DIR}/lib")
 set(BIN_DIR "${CMAKE_BINARY_DIR}/bin")
+set(INC_DIR "${CMAKE_BINARY_DIR}/include")
 file(MAKE_DIRECTORY "${LIB_DIR}")
 file(MAKE_DIRECTORY "${BIN_DIR}")
+file(MAKE_DIRECTORY "${INC_DIR}")
 
 
 

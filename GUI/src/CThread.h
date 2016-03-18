@@ -5,7 +5,7 @@
 
 
 class CThread: public QThread{
-
+  Q_OBJECT
  public:
   CThread();
 

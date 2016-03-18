@@ -1,31 +1,40 @@
 
 project(camera)
 
-set(CameraSimulate CACHE BOOL "Read image from disk")
+
+
 add_definitions(-DCAMAPI_EXPORTS)
 
+# copy all header file in "${CMAKE_CURRENT_SOURCE_DIR}/include/"
+#  into "${CMAKE_BINARY_DIR}/include/Camera"
+file(GLOB CAM_INC 
+  RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/include/"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+foreach(CAM_INC_FILE ${CAM_INC})
+  file(COPY
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/${CAM_INC_FILE}"
+    DESTINATION "${INC_DIR}/Camera")
+endforeach()
 
+# add include directories: "${CMAKE_BINARY_DIR}/include/" 
+include_directories(${INC_DIR})
+
+# choice camera mode
+set(CameraSimulate CACHE BOOL "Read image from disk")
 if(CameraSimulate)
-	message(STATUS "CameraSimulate")
-	set(PIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp")
-	find_package(OpenCV REQUIRED)
-	include_directories(${OpenCV_INCLUDE_DIRS})
-	add_definitions(-DPicPath="${PIC_DIR}")
-	add_library(camera SHARED CCameraSimu.cpp)
-	target_link_libraries(camera ${OpenCV_LIBS})
-	#file(COPY ${PIC_DIR} DESTINATION "${BIN_DIR}")
+  message(STATUS "CameraSimulate")
+  find_package(OpenCV REQUIRED)
 
-	if (WIN32)
-	  install(PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp" DESTINATION "${CMAKE_INSTALL_PREFIX}")
-	else()
-	  #install(PROGRAMS )
-	endif()
-	
-	  
-	
-
+  
+  set(PIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/figure/1.bmp")
+  add_definitions(-DPicPath="${PIC_DIR}")
+  
+  include_directories(${OpenCV_INCLUDE_DIRS})
+  add_library(camera SHARED src/CCameraSimu.cpp)
+  target_link_libraries(camera ${OpenCV_LIBS})
+  
 else(not CameraSimulate)
-	add_library(camera SHARED CCamera.cpp)
+  add_library(camera SHARED CCamera.cpp)
 endif()
 
 
@@ -33,5 +42,5 @@ endif()
 if (WIN32)
   install(TARGETS camera DESTINATION "${CMAKE_INSTALL_PREFIX}")
 else()
-  install(TARGETS camera DESTINATION "lib")
+  install(TARGETS camera DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
 endif()

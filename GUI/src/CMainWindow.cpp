@@ -1,9 +1,9 @@
-#include "CMainWindow.h"
+#include <CMainWindow.h>
 
 #include <QSplitter>
 #include <QIcon>
 
-#include <CCamera.h>
+#include <Camera/CCamera.h>
 
 #include <iostream>
 using std::cout;

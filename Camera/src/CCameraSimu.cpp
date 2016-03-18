@@ -1,4 +1,4 @@
-#include "CCamera.h"
+#include <Camera/CCamera.h>
 #include <iostream>
 #include <opencv2/opencv.hpp>
 using std::cout;

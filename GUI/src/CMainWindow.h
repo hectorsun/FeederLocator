@@ -3,7 +3,7 @@
 
 #include <QtWidgets>
 #include <QMainWindow>
-#include "CPaintWidget.h"
+#include <CPaintWidget.h>
 #include <QListWidget>
 #include <QToolBar>
 

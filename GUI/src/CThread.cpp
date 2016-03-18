@@ -1,4 +1,4 @@
-#include "CThread.h"
+#include <CThread.h>
 
 
 CThread::CThread()

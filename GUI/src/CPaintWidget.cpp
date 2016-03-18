@@ -1,5 +1,5 @@
-#include "CPaintWidget.h"
-#include <CCamera.h>
+#include <CPaintWidget.h>
+#include <Camera/CCamera.h>
 
 
 #include <iostream>

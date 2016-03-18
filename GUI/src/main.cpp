@@ -3,9 +3,9 @@
 #include <QApplication>
 #include <QLabel>
 
-#include <CCamera.h>
+#include <Camera/CCamera.h>
 
-#include "CMainWindow.h"
+#include <CMainWindow.h>
 
 
 int main(int argc, char* argv[]){
