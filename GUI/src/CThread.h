@@ -18,7 +18,7 @@ public:
      constructure function
    */
   CThread(QListWidget* pList, QObject *parent=0);
-
+public slots:
   /**
      @brief make thread start process
    */
@@ -40,5 +40,17 @@ protected:
 private:
   QListWidget* m_pList;//< log widget
 
+  // wakeup and quit thread
+  QMutex m_muxWakeup;
+  bool m_bWakeup;
+  bool m_bQuit;
+  QWaitCondition m_cndWakeup;
+  
+  // feedback
+  QMutex m_muxFeedback;
+  bool m_bFeedback;
+  QWaitCondition m_cndFeedback;
+
+  
 };
 #endif

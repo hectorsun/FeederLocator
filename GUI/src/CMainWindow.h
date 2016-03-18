@@ -31,7 +31,8 @@ private:
   
   // actions
   QAction *m_pSnapAPictureAction;
-  
+  QAction *m_pStartProcessAction;
+  QAction *m_pStopProcessAction;
 
 };
 #endif //CMAINWIDONW_H

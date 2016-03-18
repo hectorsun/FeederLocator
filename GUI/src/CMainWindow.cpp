@@ -15,6 +15,8 @@ CMainWindow::CMainWindow()
   //this->setSizePolicy(QSizePolicy::Maximum);
   this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle("Feeder");
+  
+  m_pThread = new CThread(m_pList);
 
   createActions();
   createToolBars();
@@ -27,7 +29,7 @@ CMainWindow::CMainWindow()
   mainSplitter->addWidget(m_pPaint);
   mainSplitter->addWidget(m_pList);
 
-  m_pThread = new CThread(m_pList);
+
   m_pThread->start();
   
   this->setCentralWidget(mainSplitter);
@@ -39,7 +41,19 @@ CMainWindow::createActions()
   //snap a picture
   m_pSnapAPictureAction = new QAction(tr("snap"), this);
   m_pSnapAPictureAction->setIcon(QIcon(":/icons/snap.png"));
-  connect(m_pSnapAPictureAction,SIGNAL(triggered()), this, SLOT(snapAPicture()));
+  connect(m_pSnapAPictureAction,SIGNAL(triggered()),
+	  this, SLOT(snapAPicture()));
+  
+  // start process
+  m_pStartProcessAction = new QAction(tr("Start Process"), this);
+  m_pStartProcessAction->setIcon(QIcon(":/icons/start.png"));
+  connect(m_pStartProcessAction, SIGNAL(triggered()),
+	  m_pThread, SLOT(startProcess()));
+
+  m_pStopProcessAction = new QAction(tr("Stop Process"), this);
+  m_pStopProcessAction->setIcon(QIcon(":/icons/stop.png"));
+  connect(m_pStopProcessAction, SIGNAL(triggered()),
+	  m_pThread, SLOT(stopProcess()));
 
 }
 
@@ -48,6 +62,8 @@ CMainWindow::createToolBars()
 {
   m_pEditToolBar=addToolBar(tr("&Edit"));
   m_pEditToolBar->addAction(m_pSnapAPictureAction);
+  m_pEditToolBar->addAction(m_pStartProcessAction);
+  m_pEditToolBar->addAction(m_pStopProcessAction);
 }
 
 //slots
