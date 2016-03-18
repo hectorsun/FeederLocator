@@ -26,6 +26,7 @@ endif()
 ##########################
 # add modules
 #########################
+add_subdirectory(misc)
 
 add_subdirectory(Camera)
 

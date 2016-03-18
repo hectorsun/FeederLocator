@@ -27,11 +27,11 @@ private slots:
 
   /** @brief save data into disk
    */
-  void save();
+  void saveData();
 
   /** @brief load data into disk
    */
-  void open();
+  void loadData();
   
 private:
   void createActions();
@@ -50,7 +50,7 @@ private:
   QAction *m_pStartProcessAction;
   QAction *m_pStopProcessAction;
   QAction *m_pSettingAction;
-  QAction *m_pSaveAction;
-  QAction *m_pOpenAction;
+  QAction *m_pSaveDataAction;
+  QAction *m_pLoadDataAction;
 };
 #endif //CMAINWIDONW_H

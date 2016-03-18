@@ -60,15 +60,15 @@ CMainWindow::createActions()
   connect(m_pSettingAction, SIGNAL(triggered()),
 	  this, SLOT(setting()));
 
-  m_pSaveAction = new QAction(tr("save data"), this);
-  m_pSaveAction->setIcon(QIcon(":/icons/save.png"));
-  connect(m_pSaveAction, SIGNAL(triggered()),
-	  this, SLOT(save()));
+  m_pSaveDataAction = new QAction(tr("save data"), this);
+  m_pSaveDataAction->setIcon(QIcon(":/icons/save.png"));
+  connect(m_pSaveDataAction, SIGNAL(triggered()),
+	  this, SLOT(saveData()));
 
-  m_pOpenAction = new QAction(tr("open data"), this);
-  m_pOpenAction->setIcon(QIcon(":/icons/open.png"));
-  connect(m_pOpenAction, SIGNAL(triggered()),
-	  this, SLOT(Open()));
+  m_pLoadDataAction = new QAction(tr("open data"), this);
+  m_pLoadDataAction->setIcon(QIcon(":/icons/open.png"));
+  connect(m_pLoadDataAction, SIGNAL(triggered()),
+	  this, SLOT(loadData()));
   
 }
 
@@ -80,8 +80,8 @@ CMainWindow::createToolBars()
   m_pEditToolBar->addAction(m_pStartProcessAction);
   m_pEditToolBar->addAction(m_pStopProcessAction);
   
-  m_pEditToolBar->addAction(m_pSaveAction);
-  m_pEditToolBar->addAction(m_pOpenAction);
+  m_pEditToolBar->addAction(m_pSaveDataAction);
+  m_pEditToolBar->addAction(m_pLoadDataAction);
 
   m_pEditToolBar->addAction(m_pSettingAction);
 }
@@ -116,14 +116,13 @@ CMainWindow::setting()
 }
 
 void
-CMainWindow::save()
+CMainWindow::saveData()
 {
 
 }
 
 void
-CMainWindow::open()
+CMainWindow::loadData()
 {
-
 
 }
