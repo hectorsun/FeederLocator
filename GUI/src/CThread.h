@@ -45,6 +45,11 @@ private:
   bool m_bWakeup;
   bool m_bQuit;
   QWaitCondition m_cndWakeup;
+
+  // stop process
+  QMutex m_muxStop;
+  bool m_bStop;
+  QWaitCondition m_cndStop;
   
   // feedback
   QMutex m_muxFeedback;
