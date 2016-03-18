@@ -12,9 +12,9 @@ using std::endl;
 
 CMainWindow::CMainWindow()
 {
-  //this->setSizePolicy(QSizePolicy::Maximum);
+  m_pSettingDlg = 0;
   this->setWindowState(Qt::WindowMaximized);
-  this->setWindowTitle("Feeder");
+  this->setWindowTitle(tr("feeder locator"));
   
   m_pPaint = new CPaintWidget();
   m_pList = new QListWidget();
@@ -55,6 +55,21 @@ CMainWindow::createActions()
   connect(m_pStopProcessAction, SIGNAL(triggered()),
 	  m_pThread, SLOT(stopProcess()));
 
+  m_pSettingAction = new QAction(tr("setting"), this);
+  m_pSettingAction->setIcon(QIcon(":/icons/setting.png"));
+  connect(m_pSettingAction, SIGNAL(triggered()),
+	  this, SLOT(setting()));
+
+  m_pSaveAction = new QAction(tr("save data"), this);
+  m_pSaveAction->setIcon(QIcon(":/icons/save.png"));
+  connect(m_pSaveAction, SIGNAL(triggered()),
+	  this, SLOT(save()));
+
+  m_pOpenAction = new QAction(tr("open data"), this);
+  m_pOpenAction->setIcon(QIcon(":/icons/open.png"));
+  connect(m_pOpenAction, SIGNAL(triggered()),
+	  this, SLOT(Open()));
+  
 }
 
 void
@@ -64,6 +79,11 @@ CMainWindow::createToolBars()
   m_pEditToolBar->addAction(m_pSnapAPictureAction);
   m_pEditToolBar->addAction(m_pStartProcessAction);
   m_pEditToolBar->addAction(m_pStopProcessAction);
+  
+  m_pEditToolBar->addAction(m_pSaveAction);
+  m_pEditToolBar->addAction(m_pOpenAction);
+
+  m_pEditToolBar->addAction(m_pSettingAction);
 }
 
 //slots
@@ -81,4 +101,29 @@ CMainWindow::snapAPicture()
 
   //
   m_pList->addItem(QString("snap a picture"));
+}
+
+void
+CMainWindow::setting()
+{
+  if (0 == m_pSettingDlg){
+    m_pSettingDlg = new CSettingDlg();
+  }
+
+  m_pSettingDlg->show();
+  m_pSettingDlg->raise();
+  m_pSettingDlg->activateWindow();
+}
+
+void
+CMainWindow::save()
+{
+
+}
+
+void
+CMainWindow::open()
+{
+
+
 }

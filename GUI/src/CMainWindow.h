@@ -7,6 +7,9 @@
 #include <QListWidget>
 #include <QToolBar>
 #include <CThread.h>
+#include <CSettingDlg.h>
+
+
 
 class CMainWindow : public QMainWindow
 {
@@ -17,22 +20,37 @@ public:
 
 private slots:
   void snapAPicture();
+  
+  /**@brief setting data
+   */
+  void setting();
 
+  /** @brief save data into disk
+   */
+  void save();
+
+  /** @brief load data into disk
+   */
+  void open();
   
 private:
   void createActions();
   void createToolBars();
-  //
-  CPaintWidget * m_pPaint;
-  QListWidget *m_pList;
-  QToolBar *m_pEditToolBar;
-  CThread* m_pThread;
 
+  
+  //
+  CPaintWidget *m_pPaint;
+  QListWidget  *m_pList;
+  QToolBar     *m_pEditToolBar;
+  CThread      *m_pThread;
+  CSettingDlg  *m_pSettingDlg;
   
   // actions
   QAction *m_pSnapAPictureAction;
   QAction *m_pStartProcessAction;
   QAction *m_pStopProcessAction;
-
+  QAction *m_pSettingAction;
+  QAction *m_pSaveAction;
+  QAction *m_pOpenAction;
 };
 #endif //CMAINWIDONW_H

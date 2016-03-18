@@ -4,5 +4,8 @@
     <file>icons/start.png</file>
     <file>icons/stop.png</file>
     <file>icons/pause.png</file>
+    <file>icons/save.png</file>
+    <file>icons/setting.png</file>
+    <file>icons/open.png</file>
   </qresource>
 </RCC>
