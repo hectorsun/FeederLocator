@@ -5,9 +5,10 @@
 using std::cout;
 using std::endl;
 
-CThread::CThread(QListWidget* pList, QObject* parent/*=0*/)
+CThread::CThread(QListWidget* pList, CPaintWidget* pPaint,QObject* parent/*=0*/)
   :QThread(parent),
-   m_pList(pList)
+   m_pList(pList),
+   m_pPaint(pPaint)
 {
   m_bWakeup = false;
   m_bQuit = false;
@@ -53,6 +54,10 @@ CThread::run()
     for (int i = 0; i<100; i++){
       cout << "job iterater"<< i << endl;
       sleep(1);
+
+
+      // refresh paint
+      emit m_pPaint->refresh();
       
       // stop the job
       if (true == m_bStop){

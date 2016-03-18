@@ -16,14 +16,14 @@ CMainWindow::CMainWindow()
   this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle("Feeder");
   
-  m_pThread = new CThread(m_pList);
+  m_pPaint = new CPaintWidget();
+  m_pList = new QListWidget();
+
+  m_pThread = new CThread(m_pList, m_pPaint);
+
 
   createActions();
   createToolBars();
-
-  
-  m_pPaint = new CPaintWidget();
-  m_pList = new QListWidget();
   
   QSplitter* mainSplitter = new QSplitter(Qt::Vertical);
   mainSplitter->addWidget(m_pPaint);

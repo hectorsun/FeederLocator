@@ -3,7 +3,7 @@
 
 #include <QtWidgets>
 #include <QThread>
-
+#include <CPaintWidget.h>
 
 /** @breif: thread class
 
@@ -17,7 +17,7 @@ public:
   /**
      constructure function
    */
-  CThread(QListWidget* pList, QObject *parent=0);
+  CThread(QListWidget* pList, CPaintWidget* pPaint,QObject *parent=0);
 public slots:
   /**
      @brief make thread start process
@@ -39,6 +39,7 @@ protected:
   void run() Q_DECL_OVERRIDE;
 private:
   QListWidget* m_pList;//< log widget
+  CPaintWidget* m_pPaint;
 
   // wakeup and quit thread
   QMutex m_muxWakeup;

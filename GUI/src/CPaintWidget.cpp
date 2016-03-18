@@ -28,7 +28,7 @@ CPaintWidget::CPaintWidget(QWidget* paint/*=0*/)
 void
 CPaintWidget::refreshPaint()
 {
-  //cout<<"CPaintWidget::refreshPaint()"<<endl;
+  cout<<"CPaintWidget::refreshPaint()"<<endl;
 
   QImage image(CCamera::getInstance().getData(),
 	       CCamera::getInstance().getWidth(),
