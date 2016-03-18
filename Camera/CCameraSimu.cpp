@@ -9,9 +9,10 @@ using std::endl;
 void 
 CCamera::init()
 {
-  const char szPicPath[] = "./1.bmp";
-  std::cout<<"CameraSimu CCamera::init()"<<std::endl;
-  cv::Mat img = cv::imread(szPicPath);
+  //const char szPicPath[] = "./1.bmp";
+  cout<<"===CameraSimu CCamera::init()==="<<endl;
+  cout<<"Path:"<<PicPath<<endl;
+  cv::Mat img = cv::imread(PicPath);
   if (!img.data){
     cout<<"failed to load image"<<endl;
     return;
@@ -24,6 +25,7 @@ CCamera::init()
   std::cout <<"width="<< m_imgWidth
 	    <<" ,height="<<m_imgHeight
 	    << ", size="<< l_size <<std::endl;
+  cout<<"================================"<<endl;
 }
 
 int
