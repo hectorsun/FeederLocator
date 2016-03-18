@@ -12,7 +12,8 @@ using std::endl;
 
 CMainWindow::CMainWindow()
 {
-  this->showMaximized();
+  //this->setSizePolicy(QSizePolicy::Maximum);
+  this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle("Feeder");
 
   createActions();
@@ -26,6 +27,9 @@ CMainWindow::CMainWindow()
   mainSplitter->addWidget(m_pPaint);
   mainSplitter->addWidget(m_pList);
 
+  m_pThread = new CThread(m_pList);
+  m_pThread->start();
+  
   this->setCentralWidget(mainSplitter);
 }
 

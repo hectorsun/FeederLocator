@@ -6,7 +6,7 @@
 #include <CPaintWidget.h>
 #include <QListWidget>
 #include <QToolBar>
-
+#include <CThread.h>
 
 class CMainWindow : public QMainWindow
 {
@@ -26,6 +26,8 @@ private:
   CPaintWidget * m_pPaint;
   QListWidget *m_pList;
   QToolBar *m_pEditToolBar;
+  CThread* m_pThread;
+
   
   // actions
   QAction *m_pSnapAPictureAction;
