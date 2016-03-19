@@ -24,6 +24,7 @@ CMainWindow::CMainWindow()
 
   createActions();
   createToolBars();
+  createStatusBar();
   
   QSplitter* mainSplitter = new QSplitter(Qt::Vertical);
   mainSplitter->addWidget(m_pPaint);
@@ -84,6 +85,12 @@ CMainWindow::createToolBars()
   m_pEditToolBar->addAction(m_pLoadDataAction);
 
   m_pEditToolBar->addAction(m_pSettingAction);
+}
+
+void
+CMainWindow::createStatusBar()
+{
+  statusBar()->setVisible(true);
 }
 
 //slots

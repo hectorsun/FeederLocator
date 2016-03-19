@@ -36,7 +36,7 @@ private slots:
 private:
   void createActions();
   void createToolBars();
-
+  void createStatusBar();
   
   //
   CPaintWidget *m_pPaint;
