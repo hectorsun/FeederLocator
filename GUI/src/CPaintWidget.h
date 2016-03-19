@@ -11,6 +11,8 @@ public:
    */
   CPaintWidget(QWidget* parent = 0);
 
+
+    QRect& getSelectedRect(){return m_selectedRect;}
 signals:
   /**
      @brief make refreshPaint()function called to update m_pPaintImage
@@ -41,8 +43,26 @@ protected:
    */
   void resizeEvent(QResizeEvent* event);
 
+  /**
+   */
+  void mousePressEvent(QMouseEvent* event);
+
+  /**
+   */
+  void mouseMoveEvent(QMouseEvent* event);
+
+  /**
+   */
+  void mouseReleaseEvent(QMouseEvent* event);
+
+
 private:
   QImage* m_pPaintImage;//< image to paint in the screen
   QRect*  m_pPaintRect; //< reactangle of target when paint
+  QRubberBand* m_pRubberBand;
+  QPoint origin;
+  QPoint cur;
+  QRect m_rubberRect;
+  QRect m_selectedRect;
 };
 #endif

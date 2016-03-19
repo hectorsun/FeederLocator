@@ -101,32 +101,74 @@ CPaintWidget::resizeEvent(QResizeEvent* event){
   m_pPaintRect->setRight(event->size().width()/2 + adjWidth/2);
   m_pPaintRect->setTop(event->size().height()/2 - adjHeight/2);
   m_pPaintRect->setBottom(event->size().height()/2 + adjHeight/2);
-  
-  /*
-  if ( l_fEventRatio>l_fPaintRatio ){
-    m_pPaintRect->setLeft(0);
-    m_pPaintRect->setRight(event->size().width());
-    int adjHeight = event->size.width()
-      *m_pPaintImage->size().height()
-      /m_pPaintImage->size().width();
-    m_pPaintRect->setTop(event->size.height()/2 - adjHeight/2);
-    m_pPaintRect->setBottom(event->size().height()/2 + adjHeight/2);
+}
+
+
+void
+CPaintWidget::mousePressEvent(QMouseEvent* event)
+{
+  if (! m_pPaintRect->contains(event->pos())){
+    return ;
+  }
+  origin = event->pos();
+  if (!m_pRubberBand){
+    m_pRubberBand = new QRubberBand(QRubberBand::Rectangle,this);
+  }
+  m_pRubberBand->setGeometry(QRect(origin, QSize()));
+  m_pRubberBand->show();
+
+}
+void
+CPaintWidget::mouseMoveEvent(QMouseEvent* event)
+{
+  if (m_pRubberBand){
+    cur = event->pos();
+    if (cur.x() < m_pPaintRect->left()){
+      cur.setX( m_pPaintRect->left());
+    }else if (cur.x() > m_pPaintRect->right()){
+      cur.setX(m_pPaintRect->right());
+    }
+
+    if (cur.y() < m_pPaintRect->top()){
+      cur.setY(m_pPaintRect->top());
+    }else if (cur.y() > m_pPaintRect->bottom()){
+	cur.setY(m_pPaintRect->bottom());
+    }
+    m_pRubberBand->setGeometry(QRect(origin, cur).normalized());
+  }
+}
+
+
+
+void
+CPaintWidget::mouseReleaseEvent(QMouseEvent* event)
+{
+  if (m_pRubberBand){
+    m_rubberRect=QRect(origin, cur).normalized();
+    cout <<"m_rubberRect: "
+	 << " top() :"<< m_rubberRect.top()
+	 << " bottom():" << m_rubberRect.bottom()
+	 << " left(): " << m_rubberRect.left()
+	 << " right():" <<m_rubberRect.right()
+	 <<endl;
+
+    m_selectedRect.setTop(m_pPaintImage->height()/2 + 
+			  (m_rubberRect.top() - m_pPaintRect->height()/2)*
+			  m_pPaintImage->height()/m_pPaintRect->height());
 
     
-  }else if( l_fEventRatio<l_fPaintRatio ){
-    m_pPaintRect->setTop(0);
-    m_pPaintRect->setBottom(event->size().height());
+    m_selectedRect.setBottom(m_pPaintImage->height()/2 + 
+			     (m_rubberRect.bottom() - m_pPaintRect->height()/2)*
+			     m_pPaintImage->height()/m_pPaintRect->height());
 
-    int adjWidth = event->size().height()
-      *m_pPaintImage->size().width()
-      /m_pPaintImage->size().height(); 
+    
+    m_selectedRect.setLeft(m_pPaintImage->width()/2 +
+			  (m_rubberRect.left() - m_pPaintRect->width()/2)*
+			  m_pPaintImage->width()/m_pPaintRect->width());
 
-    m_pPaintRect->setLeft(event->size().width()/2 - adjWidth/2);
-    m_pPaintRect->setRight(event->size().width()/2 + adjWidth/2);
-
-  }else{
-    m_pPaintRect->setRect(rect());
-    return;
-    }*/
-  
+    
+    m_selectedRect.setRight(m_pPaintImage->width()/2 + 
+			  (m_rubberRect.right() - m_pPaintRect->width()/2)*
+			  m_pPaintImage->width()/m_pPaintRect->width());
+  }
 }

@@ -17,8 +17,10 @@ endforeach()
 # add include directories: "${CMAKE_CURRENT_SOURCE_DIR}/include"
 include_directories("${INC_DIR}")
 
-
-add_library(misc SHARED src/CDataSet.cpp)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+add_library(misc SHARED src/CDataSet.cpp src/imgProc.cpp)
+target_link_libraries(misc ${OpenCV_LIBS})
 
 if (WIN32)
   install(TARGETS misc DESTINATION "${CMAKE_INSTALL_PREFIX}")

@@ -34,5 +34,5 @@ add_subdirectory(GUI)
 
 
 #####################################################################
-set_property(TARGET camera PROPERTY LIBRARY_OUTPUT_DIRECTORY "${LIB_DIR}")
+set_property(TARGET camera misc  PROPERTY LIBRARY_OUTPUT_DIRECTORY "${LIB_DIR}")
 set_property(TARGET FeederLocator    PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
