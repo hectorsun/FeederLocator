@@ -8,7 +8,7 @@
 class CSettingDlg : public QDialog{
 Q_OBJECT
 public:
-  CSettingDlg();
+  CSettingDlg(QWidget *parent=0);
 
 
 };
