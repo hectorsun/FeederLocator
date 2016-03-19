@@ -57,6 +57,14 @@ private:
   bool m_bFeedback;
   QWaitCondition m_cndFeedback;
 
+  // status
+  QMutex m_muxStatus;
+  enum ThdStatus{
+    status_uninit = 0,
+    status_sleep,
+    status_working,
+  };
+  ThdStatus m_status;
   
 };
 #endif

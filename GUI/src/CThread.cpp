@@ -1,9 +1,12 @@
 #include <CThread.h>
-
+#include <string>
 
 #include <iostream>
+#include <sstream>
+
 using std::cout;
 using std::endl;
+using std::ostringstream;
 
 CThread::CThread(QListWidget* pList, CPaintWidget* pPaint,QObject* parent/*=0*/)
   :QThread(parent),
@@ -15,6 +18,7 @@ CThread::CThread(QListWidget* pList, CPaintWidget* pPaint,QObject* parent/*=0*/)
   m_bFeedback = false;
   m_bStop = false;
 
+  m_status = status_uninit;
 }
 
 
@@ -24,8 +28,13 @@ CThread::run()
   cout<<"enter CThread::run()"<<endl;
   forever{
     cout<<"start wait for wakeup"<<endl;
-   
+
     {
+      QMutexLocker locker(&m_muxStatus);
+      m_status = status_sleep;
+    }
+    
+    {     
       // wait for main thread call CThread::startProcess()
       QMutexLocker locker(&m_muxWakeup);
       while (true != m_bWakeup){
@@ -36,6 +45,11 @@ CThread::run()
     
     cout<<" CThread waked"<<endl;
 
+    {
+      QMutexLocker locker(&m_muxStatus);
+      m_status = status_working;
+    }
+    
     // feed back to CThread::startProcess 
     {
       QMutexLocker locker(&m_muxFeedback);
@@ -52,7 +66,12 @@ CThread::run()
 
     // do the job
     for (int i = 0; i<100; i++){
-      cout << "job iterater"<< i << endl;
+      //cout << "job iterater"<< i << endl;
+      ostringstream ostr;
+      ostr<<"job iterater" << i;
+      cout << ostr.str();
+      m_pList->addItem(QString::fromStdString(ostr.str()));
+	
       sleep(1);
 
 
@@ -104,6 +123,14 @@ void
 CThread::stopProcess()
 {
   cout<<"CThread::stopProcess()"<<endl;
+
+  {
+    QMutexLocker locker(&m_muxStatus);
+    if (status_working != m_status){
+      return;
+    }
+  }
+  
   m_bStop = true;
   m_bFeedback = false;
   
