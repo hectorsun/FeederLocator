@@ -32,7 +32,8 @@ private slots:
   /** @brief load data into disk
    */
   void loadData();
-  
+
+
 private:
   void createActions();
   void createToolBars();

@@ -16,8 +16,9 @@ CMainWindow::CMainWindow()
   this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle(tr("feeder locator"));
   
-  m_pPaint = new CPaintWidget();
+  
   m_pList = new QListWidget();
+  m_pPaint = new CPaintWidget(m_pList);
 
   m_pThread = new CThread(m_pList, m_pPaint);
 

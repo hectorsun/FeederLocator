@@ -2,14 +2,14 @@
 #define CPAINT_WIDGET_H
 
 #include <QtWidgets>
-
+#include <QListWidget>
 class CPaintWidget : public QWidget{
   Q_OBJECT
 public:
   /**
      @brief construction function
    */
-  CPaintWidget(QWidget* parent = 0);
+  CPaintWidget(QListWidget* pList, QWidget* parent = 0);
 
 
     QRect& getSelectedRect(){return m_selectedRect;}
@@ -55,8 +55,16 @@ protected:
    */
   void mouseReleaseEvent(QMouseEvent* event);
 
+  /** @brief conv from gui to image
+   */
+  QPoint guiToImg(const QPoint& _point);
 
+  /** @brief conv from image to gui
+   */
+  QPoint imgToGui(const QPoint& _point);
 private:
+  QListWidget* m_pList;
+  
   QImage* m_pPaintImage;//< image to paint in the screen
   QRect*  m_pPaintRect; //< reactangle of target when paint
   QRubberBand* m_pRubberBand;

@@ -24,7 +24,9 @@ CCamera::init()
   memcpy(m_imgData, img.data, l_size);
   std::cout <<"width="<< m_imgWidth
 	    <<" ,height="<<m_imgHeight
-	    << ", size="<< l_size <<std::endl;
+	    << ", size="<< l_size
+	    << ",type="<<img.type()
+	    <<std::endl;
   cout<<"================================"<<endl;
 }
 
