@@ -12,7 +12,12 @@ public:
   CPaintWidget(QListWidget* pList, QWidget* parent = 0);
 
 
-    QRect& getSelectedRect(){return m_selectedRect;}
+  QRect& getSelectedRect(){return m_selectedRect;}
+
+  /**
+     @breif 
+  */
+  void setRubberVisible(bool visible);
 signals:
   /**
      @brief make refreshPaint()function called to update m_pPaintImage
@@ -24,6 +29,9 @@ private slots:
      @breif update m_pPaintImage
    */
   void refreshPaint();
+
+
+  
   
 protected:
   /**
@@ -70,7 +78,9 @@ private:
   QRubberBand* m_pRubberBand;
   QPoint origin;
   QPoint cur;
-  QRect m_rubberRect;
-  QRect m_selectedRect;
+  QRect m_rubberRect;  //< selected rect in widget coordinate
+  QRect m_selectedRect;//< selected rect in Image coordinate
+
+  bool m_bRubberVisible;
 };
 #endif

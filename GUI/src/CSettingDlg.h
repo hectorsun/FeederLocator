@@ -11,9 +11,11 @@ public:
  CSettingDlg(CPaintWidget* pPaint , QWidget *parent=0);
 						      
 private slots:
+  void showRubber();
   void test();
 private:
   CPaintWidget* m_pPaint;
-  QPushButton * m_pButtonTest;
+  QPushButton *m_pButtonShow;
+  QPushButton *m_pButtonTest;
 };
 #endif

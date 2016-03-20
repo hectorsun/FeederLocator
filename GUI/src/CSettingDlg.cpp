@@ -11,15 +11,31 @@ CSettingDlg::CSettingDlg(CPaintWidget* pPaint,QWidget* parent)
    m_pPaint(pPaint)
 {
   this->setWindowTitle(tr("setting"));
+  QHBoxLayout *topLayout = new QHBoxLayout();
+  m_pButtonShow = new QPushButton(tr("show"));
+  connect(m_pButtonShow, SIGNAL(clicked()),
+	  this, SLOT(showRubber()));
+  topLayout->addWidget(m_pButtonShow);
+    
   m_pButtonTest = new QPushButton(tr("test"));
   connect(m_pButtonTest, SIGNAL(clicked()),
 	  this, SLOT(test()));
-  QHBoxLayout *topLayout = new QHBoxLayout();
+
   topLayout->addWidget(m_pButtonTest);
 
   this->setLayout(topLayout);
 }
 
+void
+CSettingDlg::showRubber()
+{
+  static bool visible = false;
+  visible = !visible;
+  m_pButtonShow->setText(visible?
+			 tr("hidden") :
+			 tr("show"));
+  m_pPaint->setRubberVisible(visible);
+}
 void
 CSettingDlg::test()
 {

@@ -30,6 +30,8 @@ CPaintWidget::CPaintWidget(QListWidget* pList,QWidget* parent/*=0*/)
   imagePainter.end();
   m_pRubberBand = 0;
   m_pPaintRect = new QRect();
+
+  m_pRubberBand = new QRubberBand(QRubberBand::Rectangle,this);
 }
 
 
@@ -127,19 +129,16 @@ CPaintWidget::mousePressEvent(QMouseEvent* event)
   if (! m_pPaintRect->contains(event->pos())){
     return ;
   }
-  origin = event->pos();
-  if (!m_pRubberBand){
-    m_pRubberBand = new QRubberBand(QRubberBand::Rectangle,this);
-  }
-  m_pRubberBand->setGeometry(QRect(origin, QSize()));
-  m_pRubberBand->show();
-  cout<<"mousePressEvent" <<endl;
 
+  if (m_bRubberVisible){
+    origin = event->pos();
+    m_pRubberBand->setGeometry(QRect(origin, QSize()));
+  }
 }
 void
 CPaintWidget::mouseMoveEvent(QMouseEvent* event)
 {
-  if (m_pRubberBand){
+  if (m_bRubberVisible){
     cur = event->pos();
 
       
@@ -163,7 +162,7 @@ CPaintWidget::mouseMoveEvent(QMouseEvent* event)
 void
 CPaintWidget::mouseReleaseEvent(QMouseEvent* event)
 {
-  if (m_pRubberBand){
+  if (m_bRubberVisible){
     m_rubberRect=QRect(origin, cur).normalized();
     m_selectedRect.setTopLeft(guiToImg(m_rubberRect.topLeft()));
     m_selectedRect.setBottomRight(guiToImg(m_rubberRect.bottomRight()));
@@ -213,3 +212,14 @@ CPaintWidget::imgToGui(const QPoint& _point){
   return _p;
 }
   
+void
+CPaintWidget::setRubberVisible(bool visible){
+  m_bRubberVisible = visible;
+  if (visible == true){
+    m_pRubberBand->show();
+
+  }else{
+    m_pRubberBand->hide();
+  }  
+  
+}
