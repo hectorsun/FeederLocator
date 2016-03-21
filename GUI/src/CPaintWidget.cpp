@@ -56,7 +56,7 @@ CPaintWidget::refreshPaint()
   imagePainter.drawImage(m_pPaintImage->rect(), image, image.rect());
 
   // cross
-  imagePainter.setPen(QColor(0, 255, 0));
+  imagePainter.setPen(QColor(0, 0,255));
   imagePainter.drawLine(0,
 			m_pPaintImage->height()/2,
 			m_pPaintImage->width(),
@@ -67,12 +67,26 @@ CPaintWidget::refreshPaint()
 			m_pPaintImage->height());
 
   switch (m_mode){
-    case onlyImage:
-      break;
-    case withLocateArea:
-      break;
-    default:
-      break;
+  case onlyImage:
+    break;
+  case withLocateArea:
+    break;
+  case withOneChip:
+    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.drawRect(m_firstChipRoi);
+    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.drawRect(m_firstChipPos);
+    break;
+  case withTwoChip:
+    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.drawRect(m_firstChipRoi);
+    imagePainter.drawRect(m_secondChipRoi);
+    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.drawRect(m_firstChipPos);
+    imagePainter.drawRect(m_secondChipRoi);
+    break;
+  default:
+    break;
     }
   
   

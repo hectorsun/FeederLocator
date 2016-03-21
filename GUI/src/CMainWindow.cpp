@@ -115,7 +115,7 @@ void
 CMainWindow::setting()
 {
   if (0 == m_pSettingDlg){
-    m_pSettingDlg = new CSettingDlg(m_pPaint,this);
+    m_pSettingDlg = new CSettingDlg(m_pPaint, m_pList,this);
   }
 
   m_pSettingDlg->show();

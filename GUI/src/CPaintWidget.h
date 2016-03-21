@@ -9,7 +9,7 @@ public:
   /**
      @brief construction function
    */
-  CPaintWidget(QListWidget* pList, QWidget* parent = 0);
+  CPaintWidget(QListWidget* pList,QWidget* parent = 0);
 
 
   QRect& getSelectedRect(){return m_selectedRect;}
@@ -25,12 +25,29 @@ public:
   enum showMode{
     onlyImage = 0,
     withLocateArea,
+    withOneChip,
+    withTwoChip,
   };
   
   /**
      @brief set show mode
    */
   void setShowMode(showMode mode){m_mode = mode;}
+
+  void setOneChip(const QRect& roi_, const QRect& pos_)
+  {
+    m_firstChipRoi = roi_;
+    m_firstChipPos = pos_;
+  }
+
+  void setTwoChip(const QRect& roi1_, const QRect& pos1_,
+		  const QRect& roi2_, const QRect& pos2_)
+  {
+    m_firstChipRoi = roi1_;
+    m_firstChipPos = pos1_;
+    m_secondChipRoi = roi2_;	
+    m_secondChipPos = pos2_;
+  }
   
 signals:
   /**
@@ -97,5 +114,13 @@ private:
 
   bool m_bRubberVisible;
   showMode m_mode;
+
+  QRect m_firstChipRoi;
+  QRect m_firstChipPos;
+  QRect m_secondChipRoi;
+  QRect m_secondChipPos;
+
+  QRect m_baseRoi;
+  QRect m_basePos;
 };
 #endif
