@@ -73,17 +73,34 @@ CPaintWidget::refreshPaint()
     break;
   case withOneChip:
     imagePainter.setPen(QColor(0,255,0));
-    imagePainter.drawRect(m_firstChipRoi);
+    imagePainter.drawRect(m_firstChipRoi.normalized());
+    
     imagePainter.setPen(QColor(255,0,0));
-    imagePainter.drawRect(m_firstChipPos);
+    imagePainter.drawRect(m_firstChipPos.normalized());
     break;
   case withTwoChip:
     imagePainter.setPen(QColor(0,255,0));
-    imagePainter.drawRect(m_firstChipRoi);
-    imagePainter.drawRect(m_secondChipRoi);
+    imagePainter.drawRect(m_firstChipRoi.normalized());
+    imagePainter.drawRect(m_secondChipRoi.normalized());
+    
     imagePainter.setPen(QColor(255,0,0));
-    imagePainter.drawRect(m_firstChipPos);
-    imagePainter.drawRect(m_secondChipPos);
+    imagePainter.drawRect(m_firstChipPos.normalized());
+    imagePainter.drawRect(m_secondChipPos.normalized());
+    break;
+  case withBase:
+    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.drawRect(m_baseRoi.normalized());
+    
+    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.drawRect(m_basePos.normalized());
+  case withBaseAndChip:
+    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.drawRect(m_firstChipRoi.normalized());
+    imagePainter.drawRect(m_baseRoi.normalized());
+    
+    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.drawRect(m_firstChipPos.normalized());
+    imagePainter.drawRect(m_basePos.normalized());
     break;
   default:
     break;

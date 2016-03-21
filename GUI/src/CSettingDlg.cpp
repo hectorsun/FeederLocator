@@ -5,6 +5,7 @@ using std::endl;
 
 #include <misc/imgProc.h>
 #include <Camera/CCamera.h>
+#include <misc/CDataSet.h>
 
 CSettingDlg::CSettingDlg(CPaintWidget* pPaint,  QListWidget *pList,QWidget* parent)
   :QDialog(parent),
@@ -140,7 +141,7 @@ CSettingGetWidthOfPixel::setFirstChip(){
 
 void
 CSettingGetWidthOfPixel::setSecondChip(){
-  m_pList->addItem("setSecondChip");
+  //m_pList->addItem("setSecondChip");
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
   miscRect roi = miscRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
@@ -237,17 +238,87 @@ CSettingBaseAndChip::CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pLis
 
   QVBoxLayout *topLayout = new QVBoxLayout(this);
 
+  m_pButtonSetBaseArea = new QPushButton("Set base area");
+  connect(m_pButtonSetBaseArea, SIGNAL(clicked()),
+	  this, SLOT(setBaseArea()));
+  topLayout->addWidget(m_pButtonSetBaseArea);
   
-  m_pButtonGetLocateArea = new QPushButton("Get Locate Area");
-  connect(m_pButtonGetLocateArea, SIGNAL(clicked()),
-	  this, SLOT(getLocateArea()));
-  topLayout->addWidget(m_pButtonGetLocateArea);
+  m_pButtonSetChipArea = new QPushButton("Get Locate Area");
+  connect(m_pButtonSetChipArea, SIGNAL(clicked()),
+	  this, SLOT(setChipArea()));
+  topLayout->addWidget(m_pButtonSetChipArea);
 
   this->setLayout(topLayout);
 }
 
 
 void
-CSettingBaseAndChip::getLocateArea(){
+CSettingBaseAndChip::setBaseArea(){
+  const QRect& l_rectSelected = m_pPaint->getSelectedRect();
+  miscRect roi = miscRect(l_rectSelected.top(),
+			  l_rectSelected.bottom(),
+			  l_rectSelected.left(),
+			  l_rectSelected.right());
+  miscRect result;
+  int err;
+  if (0 != (err =imgBaseLocate(CCamera::getInstance().getData(),
+			       CCamera::getInstance().getWidth(),
+			       CCamera::getInstance().getHeight(),
+			       roi, &result))){
+    // Failed to  locate chip
+    int r = QMessageBox::warning(this, tr("set base area"),
+				 tr("Failed to locate chip in the area\n"
+				    "please setting again"),
+				 QMessageBox::Yes);
 
+  }
+  else{
+    CDataSet::getInstance().setChipRect(roi);
+
+    QRect l_qRes;
+    l_qRes.setTop(result.top);
+    l_qRes.setBottom(result.bottom);
+    l_qRes.setLeft(result.left);
+    l_qRes.setRight(result.right);
+    
+    m_pPaint->setBase(l_rectSelected, l_qRes);
+    m_pPaint->setShowMode(CPaintWidget::withBase);
+    emit m_pPaint->refresh();
+  }
+
+}
+
+void
+CSettingBaseAndChip::setChipArea(){
+ const QRect& l_rectSelected = m_pPaint->getSelectedRect();
+  miscRect roi = miscRect(l_rectSelected.top(),
+			  l_rectSelected.bottom(),
+			  l_rectSelected.left(),
+			  l_rectSelected.right());
+  miscRect result;
+  int err;
+  if (0 != (err =imgChipLocate(CCamera::getInstance().getData(),
+			       CCamera::getInstance().getWidth(),
+			       CCamera::getInstance().getHeight(),
+			       roi, &result))){
+    // Failed to  locate chip
+    int r = QMessageBox::warning(this, tr("set second chip"),
+				 tr("Failed to locate chip in the area\n"
+				    "please setting again"),
+				 QMessageBox::Yes);
+
+  }
+  else{
+    CDataSet::getInstance().setChipRect(roi);
+
+    QRect l_qRes;
+    l_qRes.setTop(result.top);
+    l_qRes.setBottom(result.bottom);
+    l_qRes.setLeft(result.left);
+    l_qRes.setRight(result.right);
+    
+    m_pPaint->setOneChip(l_rectSelected, l_qRes);
+    m_pPaint->setShowMode(CPaintWidget::withOneChip);
+    emit m_pPaint->refresh();
+  }
 }

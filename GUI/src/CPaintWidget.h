@@ -27,6 +27,8 @@ public:
     withLocateArea,
     withOneChip,
     withTwoChip,
+    withBase,
+    withBaseAndChip,
   };
   
   /**
@@ -47,6 +49,12 @@ public:
     m_firstChipPos = pos1_;
     m_secondChipRoi = roi2_;	
     m_secondChipPos = pos2_;
+  }
+
+  void setBase(const QRect& roi_, const QRect& pos_){
+    m_baseRoi = roi_;
+    m_basePos = pos_;
+
   }
   
 signals:
@@ -119,7 +127,7 @@ private:
   QRect m_firstChipPos;
   QRect m_secondChipRoi;
   QRect m_secondChipPos;
-
+  
   QRect m_baseRoi;
   QRect m_basePos;
 };

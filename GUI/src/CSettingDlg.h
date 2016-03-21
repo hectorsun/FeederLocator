@@ -61,13 +61,15 @@ public:
   CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pList ,QWidget* parent=0);
 
 private slots:
-  void getLocateArea();
+  void setBaseArea();
+  void setChipArea();
 
 
 private:
   CPaintWidget* m_pPaint;
   QListWidget *m_pList;
 
-  QPushButton *m_pButtonGetLocateArea;
+  QPushButton *m_pButtonSetBaseArea;
+  QPushButton *m_pButtonSetChipArea;
 };
 #endif

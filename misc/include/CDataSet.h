@@ -3,6 +3,7 @@
 
 #include <string>
 #include "miscdef.h"
+#include "imgProc.h"
 
 class MISC_EXPORTS CDataSet{
 public:
@@ -19,9 +20,30 @@ public:
   /** @brief load data into disk
    */
   int loadData(const std::string path);
+
+  /**
+  
+   */
+  void setBaseRect(const miscRect base){
+    m_baseRect = base;
+  }
+  miscRect& getBaseRect(){
+    return m_baseRect;
+  }
+
+  void setChipRect(const miscRect chip){
+    m_chipRect = chip;
+  }
+  miscRect& getChipRect(){
+    return m_chipRect;
+  }
+  
  private:
   CDataSet();
 
+  
+  miscRect m_baseRect;
+  miscRect m_chipRect;
 };
 
 
