@@ -18,6 +18,20 @@ public:
      @breif 
   */
   void setRubberVisible(bool visible);
+
+  /**
+     @brief show mode
+   */
+  enum showMode{
+    onlyImage = 0,
+    withLocateArea,
+  };
+  
+  /**
+     @brief set show mode
+   */
+  void setShowMode(showMode mode){m_mode = mode;}
+  
 signals:
   /**
      @brief make refreshPaint()function called to update m_pPaintImage
@@ -82,5 +96,6 @@ private:
   QRect m_selectedRect;//< selected rect in Image coordinate
 
   bool m_bRubberVisible;
+  showMode m_mode;
 };
 #endif

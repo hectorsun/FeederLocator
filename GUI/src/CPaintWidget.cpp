@@ -32,6 +32,8 @@ CPaintWidget::CPaintWidget(QListWidget* pList,QWidget* parent/*=0*/)
   m_pPaintRect = new QRect();
 
   m_pRubberBand = new QRubberBand(QRubberBand::Rectangle,this);
+  m_bRubberVisible = false;
+  m_mode = onlyImage;
 }
 
 
@@ -63,10 +65,17 @@ CPaintWidget::refreshPaint()
 			0,
 			m_pPaintImage->width()/2,
 			m_pPaintImage->height());
-  // selected rect
-  imagePainter.setPen(QColor(255,0,0));
-  imagePainter.drawRect(m_selectedRect);
 
+  switch (m_mode){
+    case onlyImage:
+      break;
+    case withLocateArea:
+      break;
+    default:
+      break;
+    }
+  
+  
   imagePainter.end();
   
   update();

@@ -13,9 +13,21 @@ public:
 private slots:
   void showRubber();
   void test();
+  void setFirstChip();
+  void setSecondChip();
+  void getWidthOfPixel();
+  void getLocateArea();
 private:
   CPaintWidget* m_pPaint;
   QPushButton *m_pButtonShow;
   QPushButton *m_pButtonTest;
+  QPushButton *m_pButtonSetFirstChip;
+  QPushButton *m_pButtonSetSecondChip;
+  QPushButton *m_pButtonGetWidthOfPixel;
+
+  QPushButton *m_pButtonGetLocateArea;
+  
+  QRect m_firstChip;
+  QRect m_secondChip;
 };
 #endif

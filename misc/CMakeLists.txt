@@ -19,7 +19,10 @@ include_directories("${INC_DIR}")
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
-add_library(misc SHARED src/CDataSet.cpp src/imgProc.cpp)
+add_library(misc SHARED src/CDataSet.cpp
+  src/imgProc.cpp
+  src/baseLocate.cpp
+  src/chipLocate.cpp)
 target_link_libraries(misc ${OpenCV_LIBS})
 
 if (WIN32)
