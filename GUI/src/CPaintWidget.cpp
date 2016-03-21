@@ -83,7 +83,7 @@ CPaintWidget::refreshPaint()
     imagePainter.drawRect(m_secondChipRoi);
     imagePainter.setPen(QColor(255,0,0));
     imagePainter.drawRect(m_firstChipPos);
-    imagePainter.drawRect(m_secondChipRoi);
+    imagePainter.drawRect(m_secondChipPos);
     break;
   default:
     break;

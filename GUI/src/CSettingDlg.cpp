@@ -115,7 +115,11 @@ CSettingGetWidthOfPixel::setFirstChip(){
 			       CCamera::getInstance().getHeight(),
 			       roi, &result))){
     // failed to  locate chip
-
+    int r = QMessageBox::warning(this, tr("set first chip"),
+				 tr("Failed to locate chip in the area\n"
+				    "please setting again"),
+				 QMessageBox::Yes);
+    return;
   }
   else{
     // success to locate chip
@@ -148,7 +152,11 @@ CSettingGetWidthOfPixel::setSecondChip(){
 			       CCamera::getInstance().getWidth(),
 			       CCamera::getInstance().getHeight(),
 			       roi, &result))){
-    // failed to  locate chip
+    // Failed to  locate chip
+    int r = QMessageBox::warning(this, tr("set second chip"),
+				 tr("Failed to locate chip in the area\n"
+				    "please setting again"),
+				 QMessageBox::Yes);
 
   }
   else{
@@ -171,7 +179,49 @@ CSettingGetWidthOfPixel::setSecondChip(){
 
 void
 CSettingGetWidthOfPixel::getWidthOfPixel(){
+  miscRect roi1 = miscRect(m_firstChip.top(),
+			  m_firstChip.bottom(),
+			  m_firstChip.left(),
+			  m_firstChip.right());
+  miscRect roi2 = miscRect(m_secondChip.top(),
+			  m_secondChip.bottom(),
+			  m_secondChip.left(),
+			  m_secondChip.right());
+  miscRect result1, result2;
   
+  int err1 =imgChipLocate(CCamera::getInstance().getData(),
+			  CCamera::getInstance().getWidth(),
+			  CCamera::getInstance().getHeight(),
+			  roi1, &result1);
+
+  int err2 =imgChipLocate(CCamera::getInstance().getData(),
+			  CCamera::getInstance().getWidth(),
+			  CCamera::getInstance().getHeight(),
+			  roi2, &result2);			       
+
+  if (err1 == 0 && err2 ==0){
+     QRect l_qRes1;
+    l_qRes1.setTop(result1.top);
+    l_qRes1.setBottom(result1.bottom);
+    l_qRes1.setLeft(result1.left);
+    l_qRes1.setRight(result1.right);
+
+    QRect l_qRes2;
+    l_qRes2.setTop(result2.top);
+    l_qRes2.setBottom(result2.bottom);
+    l_qRes2.setLeft(result2.left);
+    l_qRes2.setRight(result2.right);
+
+    m_pPaint->setTwoChip(m_firstChip, l_qRes1, m_secondChip, l_qRes2);
+    m_pPaint->setShowMode(CPaintWidget::withTwoChip);
+    emit m_pPaint->refresh();
+
+  }else{
+
+
+  }
+  
+
 }
 
 
