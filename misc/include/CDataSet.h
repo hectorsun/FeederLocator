@@ -5,6 +5,12 @@
 #include "miscdef.h"
 #include "imgProc.h"
 
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/typeof/typeof.hpp>
+
+
 class MISC_EXPORTS CDataSet{
 public:
   static CDataSet&
@@ -41,6 +47,16 @@ public:
  private:
   CDataSet();
 
+  /**
+   */
+  void saveRect(boost::property_tree::ptree& pt,
+		std::string node,
+		miscRect& rect_);
+  /**
+   */
+  void loadRect(boost::property_tree::ptree& pt,
+		std::string node,
+		miscRect& rect_);
   
   miscRect m_baseRect;
   miscRect m_chipRect;
