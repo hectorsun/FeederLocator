@@ -3,6 +3,16 @@
 
 #include "miscdef.h"
 
+class MISC_EXPORTS miscPoint{
+ public:
+  miscPoint(int x_=0, int y_=0){
+    x = x_;
+    y = y_;
+  }
+  int x;
+  int y;
+};
+
 class MISC_EXPORTS miscRect{
  public:
   miscRect(int top_=0, int bottom_=0, int left_=0, int right_=0)
@@ -12,12 +22,17 @@ class MISC_EXPORTS miscRect{
       left=left_;
       right=right_;
     }
-  
+  miscPoint getCenter(){
+    return miscPoint((left+right)/2,
+		     (top+bottom)/2);
+  }
   int top;
   int bottom;
   int left;
   int right;
 };
+
+
 
 
 int MISC_EXPORTS imgTest(unsigned char* data, int width, int height,

@@ -15,6 +15,7 @@ using std::endl;
 CMainWindow::CMainWindow()
 {
   m_pSettingDlg = 0;
+  m_pStepDlg = 0;
   this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle(tr("feeder locator"));
   
@@ -74,6 +75,10 @@ CMainWindow::createActions()
   connect(m_pLoadDataAction, SIGNAL(triggered()),
 	  this, SLOT(loadData()));
   
+  m_pStepAction = new QAction(tr("step"), this);
+  m_pStepAction->setIcon(QIcon(":/icons/step.png"));
+  connect(m_pStepAction, SIGNAL(triggered()),
+	  this, SLOT(step()));
 }
 
 void
@@ -83,6 +88,8 @@ CMainWindow::createToolBars()
   m_pEditToolBar->addAction(m_pSnapAPictureAction);
   m_pEditToolBar->addAction(m_pStartProcessAction);
   m_pEditToolBar->addAction(m_pStopProcessAction);
+
+  m_pEditToolBar->addAction(m_pStepAction);
   
   m_pEditToolBar->addAction(m_pSaveDataAction);
   m_pEditToolBar->addAction(m_pLoadDataAction);
@@ -148,4 +155,17 @@ CMainWindow::loadData()
 
     CDataSet::getInstance().loadData(filename.toStdString());
   }
+}
+
+
+void
+CMainWindow::step()
+{
+  if (m_pStepDlg == NULL){
+    m_pStepDlg = new CStepDlg(m_pPaint, m_pList, this);
+  }
+  
+  m_pStepDlg->show();
+  m_pStepDlg->raise();
+  m_pStepDlg->activateWindow();
 }

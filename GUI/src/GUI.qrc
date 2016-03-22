@@ -7,5 +7,6 @@
     <file>icons/save.png</file>
     <file>icons/setting.png</file>
     <file>icons/open.png</file>
+    <file>icons/step.png</file>
   </qresource>
 </RCC>

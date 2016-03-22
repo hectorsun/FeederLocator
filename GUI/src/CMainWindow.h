@@ -8,7 +8,7 @@
 #include <QToolBar>
 #include <CThread.h>
 #include <CSettingDlg.h>
-
+#include <CStepDlg.h>
 
 
 class CMainWindow : public QMainWindow
@@ -33,7 +33,9 @@ private slots:
    */
   void loadData();
 
-
+  /**
+   */
+  void step();
 private:
   void createActions();
   void createToolBars();
@@ -45,6 +47,8 @@ private:
   QToolBar     *m_pEditToolBar;
   CThread      *m_pThread;
   CSettingDlg  *m_pSettingDlg;
+  CStepDlg     *m_pStepDlg;
+
   
   // actions
   QAction *m_pSnapAPictureAction;
@@ -53,5 +57,6 @@ private:
   QAction *m_pSettingAction;
   QAction *m_pSaveDataAction;
   QAction *m_pLoadDataAction;
+  QAction *m_pStepAction;
 };
 #endif //CMAINWIDONW_H

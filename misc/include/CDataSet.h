@@ -27,6 +27,13 @@ public:
    */
   int loadData(const std::string path);
 
+  void setWidthOfPixel(double w_){
+    m_dWidthOfPixel = w_;
+  }
+
+  double getWidthOfPixel(){
+    return m_dWidthOfPixel;
+  }
   /**
   
    */
@@ -51,13 +58,26 @@ public:
    */
   void saveRect(boost::property_tree::ptree& pt,
 		std::string node,
-		miscRect& rect_);
+		const miscRect& rect_);
   /**
    */
   void loadRect(boost::property_tree::ptree& pt,
 		std::string node,
 		miscRect& rect_);
-  
+
+  /**
+   */
+  void savePoint(boost::property_tree::ptree& pt,
+		 std::string node,
+		 const miscPoint& point_);
+
+  /**
+   */  
+  void loadPoint(boost::property_tree::ptree& pt,
+		 std::string node,
+		 miscPoint& point_);
+private:
+  double   m_dWidthOfPixel;
   miscRect m_baseRect;
   miscRect m_chipRect;
 };

@@ -28,6 +28,7 @@ add_executable(FeederLocator
   "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CThread.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CSettingDlg.cpp"
+  src/CStepDlg.cpp
   "${RESOURCE_ADDED}")
 
 target_link_libraries(FeederLocator Qt5::Widgets camera misc)

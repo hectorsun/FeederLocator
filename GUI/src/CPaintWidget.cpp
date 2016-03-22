@@ -34,6 +34,14 @@ CPaintWidget::CPaintWidget(QListWidget* pList,QWidget* parent/*=0*/)
   m_pRubberBand = new QRubberBand(QRubberBand::Rectangle,this);
   m_bRubberVisible = false;
   m_mode = onlyImage;
+
+  // init pen
+  m_penRoi.setColor(QColor(0, 0, 255));
+  m_penRoi.setWidth(10);
+  m_penPos.setColor(QColor(255,0,0));
+  m_penPos.setWidth(10);
+  m_penCross.setColor(QColor(0, 255,0));
+  //m_penCross.setWidth(10);
 }
 
 
@@ -56,7 +64,7 @@ CPaintWidget::refreshPaint()
   imagePainter.drawImage(m_pPaintImage->rect(), image, image.rect());
 
   // cross
-  imagePainter.setPen(QColor(0, 0,255));
+  imagePainter.setPen(m_penCross);
   imagePainter.drawLine(0,
 			m_pPaintImage->height()/2,
 			m_pPaintImage->width(),
@@ -72,33 +80,33 @@ CPaintWidget::refreshPaint()
   case withLocateArea:
     break;
   case withOneChip:
-    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.setPen(m_penRoi);
     imagePainter.drawRect(m_firstChipRoi.normalized());
     
-    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_firstChipPos.normalized());
     break;
   case withTwoChip:
-    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.setPen(m_penRoi);
     imagePainter.drawRect(m_firstChipRoi.normalized());
     imagePainter.drawRect(m_secondChipRoi.normalized());
     
-    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_firstChipPos.normalized());
     imagePainter.drawRect(m_secondChipPos.normalized());
     break;
   case withBase:
-    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.setPen(m_penRoi);
     imagePainter.drawRect(m_baseRoi.normalized());
     
-    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_basePos.normalized());
   case withBaseAndChip:
-    imagePainter.setPen(QColor(0,255,0));
+    imagePainter.setPen(m_penRoi);
     imagePainter.drawRect(m_firstChipRoi.normalized());
     imagePainter.drawRect(m_baseRoi.normalized());
     
-    imagePainter.setPen(QColor(255,0,0));
+    imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_firstChipPos.normalized());
     imagePainter.drawRect(m_basePos.normalized());
     break;

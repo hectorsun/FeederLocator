@@ -130,5 +130,9 @@ private:
   
   QRect m_baseRoi;
   QRect m_basePos;
+
+  QPen m_penRoi;
+  QPen m_penPos;
+  QPen m_penCross;
 };
 #endif
