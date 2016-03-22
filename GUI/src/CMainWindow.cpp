@@ -4,6 +4,8 @@
 #include <QIcon>
 
 #include <Camera/CCamera.h>
+#include <misc/CDataSet.h>
+
 
 #include <iostream>
 using std::cout;
@@ -126,11 +128,24 @@ CMainWindow::setting()
 void
 CMainWindow::saveData()
 {
+  QString filename = QFileDialog::getSaveFileName(this,
+						  tr("Feeder Save"),".",
+						  tr("configrue files(*.conf)"));
+  if (!filename.isEmpty()){
+    CDataSet::getInstance().saveData(filename.toStdString());
+  }
 
 }
 
 void
 CMainWindow::loadData()
 {
+  QString filename = QFileDialog::getOpenFileName(this,
+						  tr("Feeder load"),".",
+						  tr("configure files(*.conf)"));
 
+  if (!filename.isEmpty()){
+
+    CDataSet::getInstance().loadData(filename.toStdString());
+  }
 }
