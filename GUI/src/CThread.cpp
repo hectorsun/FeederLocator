@@ -89,6 +89,13 @@ CThread::run()
       }
       break;
     case modeQuit:
+      cout << "Thread quit" <<endl;
+
+      {
+	QMutexLocker locker(&m_muxFeedback);
+	m_bFeedback = true;
+	m_cndFeedback.wakeAll();
+      }
       return;
       
     default:
@@ -154,9 +161,16 @@ void
 CThread::quitThread()
 {
   cout<<"CThread::quitThread()"<<endl;
-  m_bFeedback = false;
-
   
+
+  if (m_curMode == modeCapture){
+    stopCapture();
+  }
+  if (m_curMode == modeProcess){
+    stopProcess();
+  }
+  
+  m_bFeedback = false;
   m_nextMode = modeQuit;
 
   {
@@ -172,6 +186,8 @@ CThread::quitThread()
       m_cndFeedback.wait(&m_muxFeedback);
     }
   }
+
+  cout << "exit CThread::quitThread()" << endl;
 
 }
 

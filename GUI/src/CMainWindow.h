@@ -36,6 +36,8 @@ private slots:
   /** @brief step running
    */
   void step();
+protected:
+  void closeEvent(QCloseEvent* event);
 
 private:
   void createActions();

@@ -47,6 +47,11 @@ CMainWindow::CMainWindow()
 }
 
 void
+CMainWindow::closeEvent(QCloseEvent* event){
+  m_pThread->quitThread();
+}
+
+void
 CMainWindow::createActions()
 {
   //snap a picture
