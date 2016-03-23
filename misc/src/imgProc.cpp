@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-#include <opencv2/highgui.hpp>
+#include <opencv2/opencv.hpp>
 using namespace cv;
 
 int imgTest(unsigned char* data, int width, int height,
