@@ -17,11 +17,13 @@ foreach(CAM_INC_FILE ${CAM_INC})
 endforeach()
 
 # add include directories: "${CMAKE_CURRENT_SOURCE_DIR}/include"
+find_package(Boost REQUIRED)
 include_directories("${INC_DIR}")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src/")
+include_directories(${Boost_INCLUDE_DIRS})
 
+# 
 qt5_add_resources(RESOURCE_ADDED "${CMAKE_CURRENT_SOURCE_DIR}/src/GUI.qrc")
-
 add_executable(FeederLocator
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CMainWindow.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CPaintWidget.cpp"
