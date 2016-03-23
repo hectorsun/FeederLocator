@@ -14,17 +14,30 @@ public:
     return *ins;
   }
 
-  //////////////////////////////////////////
+
+  /////////////////
   virtual int init();
 
-  virtual int snap();
-  
-  //////////////////////////////////////////
-  virtual int getWidth();
-  virtual int getHeight() ;
-  virtual unsigned char* getData();
- private:
-  
+  virtual int snap(){
+    return m_pImpl->snap();
+  }
+
+
+  /////////////////////////////////////////
+  virtual int getWidth(){
+    return m_pImpl->getWidth();
+  }
+
+  virtual int getHeight(){
+    return m_pImpl->getHeight();
+  }
+
+  virtual unsigned char* getData(){
+    return m_pImpl->getData();
+  }
+
+
+ private:  
   CCamera* m_pImpl;
 };
 

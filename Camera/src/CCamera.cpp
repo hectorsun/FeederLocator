@@ -51,10 +51,10 @@ private:
 
 int 
 CCameraImpl::getWidth(){
-  return m_imgWidth;}
+  return (int)m_imgWidth;}
 int 
 CCameraImpl::getHeight() {
-  return m_imgHeight;}
+  return (int)m_imgHeight;}
 unsigned char* 
 CCameraImpl::getData() {
   return m_imgData;
@@ -80,7 +80,7 @@ CCameraImpl::init()
     return 3;
   }
 
-  m_imgSize = 3*m_imgWidth * m_imgHeight;
+  m_imgSize = (int)( 3*m_imgWidth * m_imgHeight);
   m_imgData = new unsigned char[m_imgSize];
   return 0;
 }
@@ -118,11 +118,12 @@ CCameraImpl::snap()
   }
 
   // ×ª»»¸ñÊ½
-  cv::Mat imgBayer = cv::Mat(m_imgHeight, m_imgWidth,
+  cv::Mat imgBayer = cv::Mat((int)m_imgHeight, (int)m_imgWidth,
 			     CV_8UC1, m_stFrameData.pImgBuf);
   cout<<"imgBayer"<<endl;
 
-  cv::Mat imgRGB = cv::Mat(m_imgHeight, m_imgWidth, CV_8UC3, m_imgData);;
+  cv::Mat imgRGB = cv::Mat((int)m_imgHeight, (int)m_imgWidth, 
+			   CV_8UC3, m_imgData);;
   cv::cvtColor(imgBayer, imgRGB, cv::COLOR_BayerGR2RGB);
   
   //mcpy(m_imgData, imgRGB.data, m_imgSize);
@@ -360,28 +361,9 @@ CCameraImpl::__StartSnap(){
 
 
 //////////////////////////////////////////////////////////////////////
+ /////////////////
 int 
 CCamera::init(){
   m_pImpl = new CCameraImpl;
   return m_pImpl->init();
-}
-
-int 
-CCamera::snap(){
-  return m_pImpl->snap();
-}
-
-int 
-CCamera::getWidth(){
-  return m_pImpl->getWidth();
-}
-
-int 
-CCamera::getHeight(){
-  return m_pImpl->getHeight();
-}
-
-unsigned char* 
-CCamera::getData(){
-  return m_pImpl->getData();
 }

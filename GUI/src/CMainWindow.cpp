@@ -16,15 +16,19 @@ CMainWindow::CMainWindow()
 {
   m_pSettingDlg = 0;
   m_pStepDlg = 0;
+  
+  
+  
   this->setWindowState(Qt::WindowMaximized);
   this->setWindowTitle(tr("feeder locator"));
   
+
   
   m_pList = new QListWidget();
   m_pPaint = new CPaintWidget(m_pList);
+  
 
-  m_pThread = new CThread(m_pList, m_pPaint);
-
+  m_pThread = new CThread(m_pList, m_pPaint, this);
 
   createActions();
   createToolBars();
@@ -38,6 +42,8 @@ CMainWindow::CMainWindow()
   m_pThread->start();
   
   this->setCentralWidget(mainSplitter);
+  
+  cout <<"exit CMainWindow() " <<endl;
 }
 
 void
