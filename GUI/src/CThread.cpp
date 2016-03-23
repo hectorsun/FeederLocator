@@ -85,7 +85,7 @@ CThread::run()
 	  break;
 	}
 
-	
+	msleep(30);
       }
       break;
     case modeQuit:
