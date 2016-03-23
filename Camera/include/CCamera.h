@@ -3,6 +3,7 @@
 
 #include "cameradef.h"
 
+
 class CAM_EXPORTS CCamera{
 public:
   CCamera(){}
@@ -14,18 +15,17 @@ public:
   }
 
   //////////////////////////////////////////
-  void init();
+  virtual int init();
 
-  int snap();
+  virtual int snap();
   
   //////////////////////////////////////////
-  int getWidth(){return m_imgWidth;}
-  int getHeight() {return m_imgHeight;}
-  unsigned char* getData() {return m_imgData;}
-private:
-  int m_imgWidth;
-  int m_imgHeight;
-  unsigned char*  m_imgData;
+  virtual int getWidth();
+  virtual int getHeight() ;
+  virtual unsigned char* getData();
+ private:
+  
+  CCamera* m_pImpl;
 };
 
 

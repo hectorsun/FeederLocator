@@ -25,6 +25,7 @@ add_library(misc SHARED src/CDataSet.cpp
   src/baseLocate.cpp
   src/chipLocate.cpp)
 target_link_libraries(misc ${OpenCV_LIBS} ${Boost_LIBRARIES})
+#message("${OpenCV_LIBS}")
 
 if (WIN32)
   install(TARGETS misc DESTINATION "${CMAKE_INSTALL_PREFIX}")

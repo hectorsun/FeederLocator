@@ -33,9 +33,21 @@ private slots:
    */
   void loadData();
 
-  /**
+  /** @brief step running
    */
   void step();
+
+  /** @brief start timer
+   */
+  void startTimer();
+
+  /** @brief stop timer
+   */
+  void stopTimer();
+
+  /** @brief timer functin
+   */
+  void onTimer();
 private:
   void createActions();
   void createToolBars();
@@ -58,5 +70,11 @@ private:
   QAction *m_pSaveDataAction;
   QAction *m_pLoadDataAction;
   QAction *m_pStepAction;
+
+  // timer
+  enum{
+    outTime = 300,
+  };
+  QTimer* m_pTimer;
 };
 #endif //CMAINWIDONW_H

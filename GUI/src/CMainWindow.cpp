@@ -10,7 +10,7 @@
 #include <iostream>
 using std::cout;
 using std::endl;
-
+#include <sstream>
 
 CMainWindow::CMainWindow()
 {
@@ -37,6 +37,11 @@ CMainWindow::CMainWindow()
 
   m_pThread->start();
   
+
+  m_pTimer = new QTimer(this);
+
+  connect(m_pTimer, SIGNAL(timeout()),
+	  this, SLOT(onTimer()));
   this->setCentralWidget(mainSplitter);
 }
 
@@ -107,6 +112,7 @@ CMainWindow::createStatusBar()
 void
 CMainWindow::snapAPicture()
 {
+#if 0
   cout<<"snap a picture"<<endl;
 
   if (0 != CCamera::getInstance().snap()){
@@ -118,6 +124,13 @@ CMainWindow::snapAPicture()
 
   //
   m_pList->addItem(QString("snap a picture"));
+#else
+  if (m_pTimer->isActive()){
+    emit stopTimer();
+  }else{
+    emit startTimer();
+  }
+#endif
 }
 
 void
@@ -168,4 +181,28 @@ CMainWindow::step()
   m_pStepDlg->show();
   m_pStepDlg->raise();
   m_pStepDlg->activateWindow();
+}
+
+
+void
+CMainWindow::startTimer(){
+  m_pTimer->start(outTime);
+}
+
+void
+CMainWindow::stopTimer(){
+  m_pTimer->stop();
+}
+
+
+void
+CMainWindow::onTimer(){
+  static int i = 0;
+  std::ostringstream ostm;
+  ostm<<"onTimer:"<<i;
+  m_pList->addItem(QString::fromStdString(ostm.str()));
+  i++;
+
+  CCamera::getInstance().snap();
+  emit m_pPaint->refresh();
 }

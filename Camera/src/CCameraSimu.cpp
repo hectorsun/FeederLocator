@@ -6,7 +6,7 @@ using std::endl;
 
 #include <memory>
 
-void 
+int
 CCamera::init()
 {
   //const char szPicPath[] = "./1.bmp";
@@ -28,6 +28,7 @@ CCamera::init()
 	    << ",type="<<img.type()
 	    <<std::endl;
   cout<<"================================"<<endl;
+  return 0;
 }
 
 int
