@@ -37,11 +37,6 @@ CMainWindow::CMainWindow()
 
   m_pThread->start();
   
-
-  m_pTimer = new QTimer(this);
-
-  connect(m_pTimer, SIGNAL(timeout()),
-	  this, SLOT(onTimer()));
   this->setCentralWidget(mainSplitter);
 }
 
@@ -89,16 +84,15 @@ CMainWindow::createActions()
 void
 CMainWindow::createToolBars()
 {
+  m_pFileToolBar=addToolBar(tr("File"));
+  m_pFileToolBar->addAction(m_pSaveDataAction);
+  m_pFileToolBar->addAction(m_pLoadDataAction);
+
   m_pEditToolBar=addToolBar(tr("&Edit"));
   m_pEditToolBar->addAction(m_pSnapAPictureAction);
   m_pEditToolBar->addAction(m_pStartProcessAction);
   m_pEditToolBar->addAction(m_pStopProcessAction);
-
   m_pEditToolBar->addAction(m_pStepAction);
-  
-  m_pEditToolBar->addAction(m_pSaveDataAction);
-  m_pEditToolBar->addAction(m_pLoadDataAction);
-
   m_pEditToolBar->addAction(m_pSettingAction);
 }
 
@@ -125,10 +119,10 @@ CMainWindow::snapAPicture()
   //
   m_pList->addItem(QString("snap a picture"));
 #else
-  if (m_pTimer->isActive()){
-    emit stopTimer();
+  if (m_pThread->isCapturing()){
+    m_pThread->stopCapture();
   }else{
-    emit startTimer();
+    m_pThread->startCapture();
   }
 #endif
 }
@@ -184,25 +178,3 @@ CMainWindow::step()
 }
 
 
-void
-CMainWindow::startTimer(){
-  m_pTimer->start(outTime);
-}
-
-void
-CMainWindow::stopTimer(){
-  m_pTimer->stop();
-}
-
-
-void
-CMainWindow::onTimer(){
-  static int i = 0;
-  std::ostringstream ostm;
-  ostm<<"onTimer:"<<i;
-  m_pList->addItem(QString::fromStdString(ostm.str()));
-  i++;
-
-  CCamera::getInstance().snap();
-  emit m_pPaint->refresh();
-}

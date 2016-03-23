@@ -37,17 +37,6 @@ private slots:
    */
   void step();
 
-  /** @brief start timer
-   */
-  void startTimer();
-
-  /** @brief stop timer
-   */
-  void stopTimer();
-
-  /** @brief timer functin
-   */
-  void onTimer();
 private:
   void createActions();
   void createToolBars();
@@ -57,6 +46,7 @@ private:
   CPaintWidget *m_pPaint;
   QListWidget  *m_pList;
   QToolBar     *m_pEditToolBar;
+  QToolBar     *m_pFileToolBar;
   CThread      *m_pThread;
   CSettingDlg  *m_pSettingDlg;
   CStepDlg     *m_pStepDlg;
@@ -71,10 +61,5 @@ private:
   QAction *m_pLoadDataAction;
   QAction *m_pStepAction;
 
-  // timer
-  enum{
-    outTime = 300,
-  };
-  QTimer* m_pTimer;
 };
 #endif //CMAINWIDONW_H

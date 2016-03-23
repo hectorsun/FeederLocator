@@ -63,7 +63,7 @@ signals:
    */
   void refresh();
 		
-private slots:
+public slots:
   /**
      @breif update m_pPaintImage
    */

@@ -18,6 +18,15 @@ public:
      constructure function
    */
   CThread(QListWidget* pList, CPaintWidget* pPaint,QObject *parent=0);
+
+  enum runMode{
+    modeIdle=0,
+    modeProcess,
+    modeCapture,
+    modeQuit,
+  };
+
+  bool isCapturing() {return m_curMode == modeCapture;}
 public slots:
   /**
      @brief make thread start process
@@ -30,6 +39,13 @@ public slots:
   void stopProcess();
 
   /**
+   */
+  void startCapture();
+  /**
+   */
+  void stopCapture();
+
+  /**
      @brief make thread quit
    */
   void quitThread();
@@ -37,7 +53,14 @@ protected:
   /** @brief thread function
    */
   void run() Q_DECL_OVERRIDE;
+
 private:
+  void process();
+  void capture();
+
+private:
+
+
   QListWidget* m_pList;//< log widget
   CPaintWidget* m_pPaint;
 
@@ -59,12 +82,7 @@ private:
 
   // status
   QMutex m_muxStatus;
-  enum ThdStatus{
-    status_uninit = 0,
-    status_sleep,
-    status_working,
-  };
-  ThdStatus m_status;
-  
+  runMode m_curMode;
+  runMode m_nextMode;
 };
 #endif
