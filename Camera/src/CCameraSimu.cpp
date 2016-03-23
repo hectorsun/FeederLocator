@@ -6,8 +6,28 @@ using std::endl;
 
 #include <memory>
 
+class CCameraSimuImpl : public CCamera{
+public:
+  CCameraSimuImpl(){};
+  ~CCameraSimuImpl(){};
+
+  ////////////////////////////
+  virtual int init();
+  virtual int snap();
+
+  ///////////////////////////
+  virtual int getWidth();
+  virtual int getHeight();
+  virtual unsigned char* getData();
+private:
+  int m_imgWidth;
+  int m_imgHeight;
+  unsigned char* m_imgData;
+};
+
+
 int
-CCamera::init()
+CCameraSimuImpl::init()
 {
   //const char szPicPath[] = "./1.bmp";
   cout<<"===CameraSimu CCamera::init()==="<<endl;
@@ -15,7 +35,7 @@ CCamera::init()
   cv::Mat img = cv::imread(PicPath);
   if (!img.data){
     cout<<"failed to load image"<<endl;
-    return;
+    return 1;
   }
   m_imgWidth = img.cols;
   m_imgHeight = img.rows;
@@ -32,8 +52,30 @@ CCamera::init()
 }
 
 int
-CCamera::snap()
+CCameraSimuImpl::snap()
 {
   cout<<"CCamera::snape()"<<endl;
   return 0;
+}
+
+int 
+CCameraSimuImpl::getWidth(){
+  return m_imgWidth;
+}
+
+int
+CCameraSimuImpl::getHeight(){
+  return m_imgHeight;
+}
+
+unsigned char*
+CCameraSimuImpl::getData(){
+  return m_imgData;
+}
+
+//////////////////////////////////////////////////////////////////////
+int 
+CCamera::init(){
+  m_pImpl = new CCameraSimuImpl;
+  return m_pImpl->init();
 }
