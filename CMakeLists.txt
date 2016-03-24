@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.8)
 
 #project(FeederLocator)
-set(LIB_DIR "${CMAKE_BINARY_DIR}/lib")
+set(LIB_DIR "${CMAKE_BINARY_DIR}/bin")
 set(BIN_DIR "${CMAKE_BINARY_DIR}/bin")
 set(INC_DIR "${CMAKE_BINARY_DIR}/include")
 file(MAKE_DIRECTORY "${LIB_DIR}")
@@ -40,4 +40,5 @@ add_subdirectory(GUI)
 
 
 #####################################################################
-set_property(TARGET FeederLocator camera misc imgProc   PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
+set_property(TARGET FeederLocator   PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
+set_property(TARGET Camera misc imgProc PROPERTY LIBRARY_OUTPUT_DIRECTORY "${LIB_DIR}")

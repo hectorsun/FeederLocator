@@ -32,7 +32,7 @@ add_executable(FeederLocator
   src/CStepDlg.cpp
   "${RESOURCE_ADDED}")
 
-target_link_libraries(FeederLocator Qt5::Widgets camera misc imgProc)
+target_link_libraries(FeederLocator Qt5::Widgets Camera misc imgProc)
 
 if(WIN32)
   install(TARGETS FeederLocator DESTINATION "${CMAKE_INSTALL_PREFIX}")
