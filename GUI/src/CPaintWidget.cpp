@@ -170,6 +170,14 @@ CPaintWidget::resizeEvent(QResizeEvent* event){
   m_pPaintRect->setRight(event->size().width()/2 + adjWidth/2);
   m_pPaintRect->setTop(event->size().height()/2 - adjHeight/2);
   m_pPaintRect->setBottom(event->size().height()/2 + adjHeight/2);
+
+  // adjust rubber
+  if (!m_pPaintRect->contains(origin)){
+    origin = m_pPaintRect->topLeft();
+  }
+  if (!(m_pPaintRect->contains(cur))){
+    cur = m_pPaintRect->bottomRight();
+  }
 }
 
 
@@ -182,7 +190,7 @@ CPaintWidget::mousePressEvent(QMouseEvent* event)
 
   if (m_bRubberVisible){
     origin = event->pos();
-    m_pRubberBand->setGeometry(QRect(origin, QSize()));
+    m_pRubberBand->setGeometry(QRect(origin, cur));
   }
 }
 void
@@ -266,8 +274,9 @@ void
 CPaintWidget::setRubberVisible(bool visible){
   m_bRubberVisible = visible;
   if (visible == true){
+    m_pRubberBand->setGeometry(QRect(origin, cur).normalized());
     m_pRubberBand->show();
-
+    
   }else{
     m_pRubberBand->hide();
   }  
