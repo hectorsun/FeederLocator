@@ -54,6 +54,10 @@ public:
   void setBase(const QRect& roi_, const QRect& pos_){
     m_baseRoi = roi_;
     m_basePos = pos_;
+    m_basePosP1 = m_basePos.topLeft();
+    m_basePosP2 = m_basePos.topRight();
+    m_basePosP3.setX((m_basePos.left() + m_basePos.right())/2);
+    m_basePosP3.setY(m_basePos.bottom());
 
   }
   
@@ -130,7 +134,11 @@ private:
   
   QRect m_baseRoi;
   QRect m_basePos;
+  QPoint m_basePosP1;
+  QPoint m_basePosP2;
+  QPoint m_basePosP3;
 
+  
   QPen m_penRoi;
   QPen m_penPos;
   QPen m_penCross;

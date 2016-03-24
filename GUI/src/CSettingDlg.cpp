@@ -243,7 +243,7 @@ CSettingBaseAndChip::CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pLis
 	  this, SLOT(setBaseArea()));
   topLayout->addWidget(m_pButtonSetBaseArea);
   
-  m_pButtonSetChipArea = new QPushButton("Get Locate Area");
+  m_pButtonSetChipArea = new QPushButton("Set Locate Area");
   connect(m_pButtonSetChipArea, SIGNAL(clicked()),
 	  this, SLOT(setChipArea()));
   topLayout->addWidget(m_pButtonSetChipArea);
@@ -255,6 +255,11 @@ CSettingBaseAndChip::CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pLis
 void
 CSettingBaseAndChip::setBaseArea(){
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
+#if 1
+  m_pPaint->setBase(l_rectSelected, l_rectSelected);
+  m_pPaint->setShowMode(CPaintWidget::withBase);
+  m_pPaint->refreshPaint();
+#else
   imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
@@ -285,7 +290,7 @@ CSettingBaseAndChip::setBaseArea(){
     m_pPaint->setShowMode(CPaintWidget::withBase);
     emit m_pPaint->refresh();
   }
-
+#endif
 }
 
 void

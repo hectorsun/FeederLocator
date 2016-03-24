@@ -95,20 +95,22 @@ CPaintWidget::refreshPaint()
     imagePainter.drawRect(m_firstChipPos.normalized());
     imagePainter.drawRect(m_secondChipPos.normalized());
     break;
-  case withBase:
-    imagePainter.setPen(m_penRoi);
-    imagePainter.drawRect(m_baseRoi.normalized());
-    
-    imagePainter.setPen(m_penPos);
-    imagePainter.drawRect(m_basePos.normalized());
   case withBaseAndChip:
     imagePainter.setPen(m_penRoi);
     imagePainter.drawRect(m_firstChipRoi.normalized());
-    imagePainter.drawRect(m_baseRoi.normalized());
     
     imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_firstChipPos.normalized());
-    imagePainter.drawRect(m_basePos.normalized());
+    
+  case withBase:{
+    imagePainter.setPen(m_penRoi);
+    imagePainter.drawRect(m_baseRoi.normalized());
+    
+    imagePainter.setPen(m_penPos);
+    imagePainter.drawLine(m_basePosP1, m_basePosP2);
+    imagePainter.drawLine(m_basePosP2, m_basePosP3);
+    imagePainter.drawLine(m_basePosP3, m_basePosP1);
+  }
     break;
   default:
     break;
