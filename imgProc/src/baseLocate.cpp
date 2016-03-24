@@ -1,13 +1,13 @@
 
 
-#include <misc/imgProc.h>
+#include <imgProc/imgProc.h>
 
 #include <opencv2/opencv.hpp>
 
 
 
 int imgBaseLocate(unsigned char* data, int width, int height,
-		  miscRect& roi, miscRect* basePosition)
+		  imgRect& roi, imgRect* basePosition)
 {
 
   int l_width = roi.right - roi.left;

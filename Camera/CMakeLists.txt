@@ -21,8 +21,6 @@ endforeach()
 include_directories(${INC_DIR})
 
 
-  
-find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
   
 # choice camera mode

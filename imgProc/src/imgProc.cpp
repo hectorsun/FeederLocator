@@ -1,5 +1,5 @@
 
-#include <misc/imgProc.h>
+#include <imgProc/imgProc.h>
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -8,7 +8,7 @@ using std::endl;
 using namespace cv;
 
 int imgTest(unsigned char* data, int width, int height,
-	    miscRect& roi)
+	    imgRect& roi)
 {
 
   cout<<"imgTest"<<endl;

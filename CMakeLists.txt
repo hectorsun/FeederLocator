@@ -8,6 +8,10 @@ file(MAKE_DIRECTORY "${LIB_DIR}")
 file(MAKE_DIRECTORY "${BIN_DIR}")
 file(MAKE_DIRECTORY "${INC_DIR}")
 
+#############################
+#
+find_package(OpenCV REQUIRED)
+find_package(Boost REQUIRED)
 
 
 ##########################
@@ -26,6 +30,8 @@ endif()
 ##########################
 # add modules
 #########################
+add_subdirectory(imgProc)
+
 add_subdirectory(misc)
 
 add_subdirectory(Camera)
@@ -34,5 +40,4 @@ add_subdirectory(GUI)
 
 
 #####################################################################
-set_property(TARGET camera misc  PROPERTY LIBRARY_OUTPUT_DIRECTORY "${LIB_DIR}")
-set_property(TARGET FeederLocator    PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
+set_property(TARGET FeederLocator camera misc imgProc   PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")

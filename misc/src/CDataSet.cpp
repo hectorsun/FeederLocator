@@ -49,7 +49,7 @@ CDataSet::loadData(const std::string path)
 void
 CDataSet::saveRect(boost::property_tree::ptree& pt,
 		   std::string node,
-		   const miscRect& rect_)
+		   const imgRect& rect_)
 {
   pt.put(node+".top",rect_.top);
   pt.put(node+".bottom",rect_.bottom);
@@ -62,7 +62,7 @@ CDataSet::saveRect(boost::property_tree::ptree& pt,
 void
 CDataSet::loadRect(boost::property_tree::ptree& pt,
 		   std::string node,
-		   miscRect& rect_){
+		   imgRect& rect_){
 
   rect_.top     = pt.get<int>(node+".top");
   rect_.bottom  = pt.get<int>(node+".bottom");
@@ -74,7 +74,7 @@ CDataSet::loadRect(boost::property_tree::ptree& pt,
 void
 CDataSet::savePoint(boost::property_tree::ptree& pt,
 		    std::string node,
-		    const miscPoint& point_){
+		    const imgPoint& point_){
   pt.put(node+".x", point_.x);
   pt.put(node+".y", point_.y);
 }
@@ -82,7 +82,7 @@ CDataSet::savePoint(boost::property_tree::ptree& pt,
 void
 CDataSet::loadPoint(boost::property_tree::ptree& pt,
 		    std::string node,
-		    miscPoint& point_){
+		    imgPoint& point_){
   point_.x = pt.get<int>(node+".x");
   point_.y = pt.get<int>(node+".y");
 }

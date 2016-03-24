@@ -3,7 +3,7 @@
 
 #include <string>
 #include "miscdef.h"
-#include "imgProc.h"
+#include <imgProc/imgProc.h>
 
 
 #include <boost/property_tree/ptree.hpp>
@@ -37,17 +37,17 @@ public:
   /**
   
    */
-  void setBaseRect(const miscRect base){
+  void setBaseRect(const imgRect base){
     m_baseRect = base;
   }
-  miscRect& getBaseRect(){
+  imgRect& getBaseRect(){
     return m_baseRect;
   }
 
-  void setChipRect(const miscRect chip){
+  void setChipRect(const imgRect chip){
     m_chipRect = chip;
   }
-  miscRect& getChipRect(){
+  imgRect& getChipRect(){
     return m_chipRect;
   }
   
@@ -58,28 +58,28 @@ public:
    */
   void saveRect(boost::property_tree::ptree& pt,
 		std::string node,
-		const miscRect& rect_);
+		const imgRect& rect_);
   /**
    */
   void loadRect(boost::property_tree::ptree& pt,
 		std::string node,
-		miscRect& rect_);
+		imgRect& rect_);
 
   /**
    */
   void savePoint(boost::property_tree::ptree& pt,
 		 std::string node,
-		 const miscPoint& point_);
+		 const imgPoint& point_);
 
   /**
    */  
   void loadPoint(boost::property_tree::ptree& pt,
 		 std::string node,
-		 miscPoint& point_);
+		 imgPoint& point_);
 private:
   double   m_dWidthOfPixel;
-  miscRect m_baseRect;
-  miscRect m_chipRect;
+  imgRect m_baseRect;
+  imgRect m_chipRect;
 };
 
 

@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-#include <misc/imgProc.h>
+#include <imgProc/imgProc.h>
 #include <Camera/CCamera.h>
 #include <misc/CDataSet.h>
 
@@ -57,7 +57,7 @@ CSettingDlg::test()
 {
   cout << "CSettingDlg::test()"<<endl;
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-  miscRect roi = miscRect(l_rectSelected.top(),
+  imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
@@ -105,11 +105,11 @@ CSettingGetWidthOfPixel::CSettingGetWidthOfPixel(CPaintWidget* pPaint, QListWidg
 void
 CSettingGetWidthOfPixel::setFirstChip(){
    const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-  miscRect roi = miscRect(l_rectSelected.top(),
+  imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
-  miscRect result;
+  imgRect result;
   int err;
   if (0 != (err =imgChipLocate(CCamera::getInstance().getData(),
 			       CCamera::getInstance().getWidth(),
@@ -143,11 +143,11 @@ void
 CSettingGetWidthOfPixel::setSecondChip(){
   //m_pList->addItem("setSecondChip");
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-  miscRect roi = miscRect(l_rectSelected.top(),
+  imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
-  miscRect result;
+  imgRect result;
   int err;
   if (0 != (err =imgChipLocate(CCamera::getInstance().getData(),
 			       CCamera::getInstance().getWidth(),
@@ -180,15 +180,15 @@ CSettingGetWidthOfPixel::setSecondChip(){
 
 void
 CSettingGetWidthOfPixel::getWidthOfPixel(){
-  miscRect roi1 = miscRect(m_firstChip.top(),
+  imgRect roi1 = imgRect(m_firstChip.top(),
 			  m_firstChip.bottom(),
 			  m_firstChip.left(),
 			  m_firstChip.right());
-  miscRect roi2 = miscRect(m_secondChip.top(),
+  imgRect roi2 = imgRect(m_secondChip.top(),
 			  m_secondChip.bottom(),
 			  m_secondChip.left(),
 			  m_secondChip.right());
-  miscRect result1, result2;
+  imgRect result1, result2;
   
   int err1 =imgChipLocate(CCamera::getInstance().getData(),
 			  CCamera::getInstance().getWidth(),
@@ -255,11 +255,11 @@ CSettingBaseAndChip::CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pLis
 void
 CSettingBaseAndChip::setBaseArea(){
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-  miscRect roi = miscRect(l_rectSelected.top(),
+  imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
-  miscRect result;
+  imgRect result;
   int err;
   if (0 != (err =imgBaseLocate(CCamera::getInstance().getData(),
 			       CCamera::getInstance().getWidth(),
@@ -291,11 +291,11 @@ CSettingBaseAndChip::setBaseArea(){
 void
 CSettingBaseAndChip::setChipArea(){
  const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-  miscRect roi = miscRect(l_rectSelected.top(),
+  imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
-  miscRect result;
+  imgRect result;
   int err;
   if (0 != (err =imgChipLocate(CCamera::getInstance().getData(),
 			       CCamera::getInstance().getWidth(),

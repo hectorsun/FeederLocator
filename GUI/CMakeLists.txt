@@ -17,7 +17,6 @@ foreach(CAM_INC_FILE ${CAM_INC})
 endforeach()
 
 # add include directories: "${CMAKE_CURRENT_SOURCE_DIR}/include"
-find_package(Boost REQUIRED)
 include_directories("${INC_DIR}")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src/")
 include_directories(${Boost_INCLUDE_DIRS})
@@ -33,7 +32,7 @@ add_executable(FeederLocator
   src/CStepDlg.cpp
   "${RESOURCE_ADDED}")
 
-target_link_libraries(FeederLocator Qt5::Widgets camera misc)
+target_link_libraries(FeederLocator Qt5::Widgets camera misc imgProc)
 
 if(WIN32)
   install(TARGETS FeederLocator DESTINATION "${CMAKE_INSTALL_PREFIX}")
