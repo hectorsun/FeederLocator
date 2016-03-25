@@ -23,3 +23,9 @@ add_library(imgProc SHARED
   src/baseLocate.cpp
   src/chipLocate.cpp)
 target_link_libraries(imgProc ${OpenCV_LIBS} ${Boost_LIBRARIES})
+
+if (WIN32)
+  install(TARGETS imgProc DESTINATION "${CMAKE_INSTALL_PREFIX}")
+else(not WIN32)
+  install(TARGETS imgProc DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+endif()
