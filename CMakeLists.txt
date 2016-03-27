@@ -38,6 +38,7 @@ add_subdirectory(Camera)
 
 add_subdirectory(GUI)
 
+add_subdirectory(python)
 
 #####################################################################
 set_property(TARGET FeederLocator   PROPERTY RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
