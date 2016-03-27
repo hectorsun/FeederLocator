@@ -24,7 +24,12 @@ namespace feeder{
       ;
 
 
-
+    bp::class_<imgRect>("imgRect")
+      .def(bp::init<bp::optional<int, int, int, int> >())
+      .def_readonly("top", &imgRect::top)
+      .def_readonly("right", &imgRect::right)
+      .def("getCenter", &imgRect::getCenter)
+      ;
 
   }
 };

@@ -1,1 +1,1 @@
-from ._feeder import imgPoint
+from ._feeder import imgPoint, imgRect
