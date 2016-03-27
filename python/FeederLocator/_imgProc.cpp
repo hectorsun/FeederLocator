@@ -15,8 +15,16 @@ namespace bp = boost::python;
 
 
 namespace feeder{
+  BOOST_PYTHON_MODULE(_feeder){
+
+    bp::class_<imgPoint>("imgPoint")
+      .def(bp::init<bp::optional<int, int> >())
+      .def_readonly("x", &imgPoint::x)
+      .def_readonly("y", &imgPoint::y)
+      ;
 
 
 
 
+  }
 };
