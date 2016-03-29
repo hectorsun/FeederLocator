@@ -1,4 +1,4 @@
-
+find_package(Qt5Widgets)
 project(misc)
 
 add_definitions(-DMISCAPI_EXPORTS)
@@ -16,15 +16,17 @@ endforeach()
 
 # add include directories: "${CMAKE_CURRENT_SOURCE_DIR}/include"
 include_directories("${INC_DIR}")
-
-
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../GUI/src")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src/")
 include_directories(${Boost_INCLUDE_DIRS})
-add_library(misc SHARED src/CDataSet.cpp)
+add_library(misc SHARED src/CDataSet.cpp
+	src/CSuperTerminal.cpp)
 
 
-target_link_libraries(misc ${Boost_LIBRARIES})
+
+target_link_libraries(misc Qt5::Widgets ${Boost_LIBRARIES} boost_thread)
 #message("${OpenCV_LIBS}")
-
+message("${Boost_LIBRARIES}")
 if (WIN32)
   install(TARGETS misc DESTINATION "${CMAKE_INSTALL_PREFIX}")
 else(not WIN32)

@@ -17,6 +17,7 @@ class CMainWindow : public QMainWindow
 
 public:
   CMainWindow();
+  void print(int p,int q);
 
 private slots:
   void snapAPicture();

@@ -7,11 +7,12 @@
 
 #include <CMainWindow.h>
 
+
 #include <iostream>
 using std::cout;
 using std::endl;
 
-
+CMainWindow *mainWindowPtr = NULL;
 int main(int argc, char* argv[]){
   QApplication app(argc, argv);
 
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]){
   cout<<"mainWin"<<endl;
   
   CMainWindow mainWin;
+  mainWindowPtr = &mainWin;
   mainWin.show();
-
   return app.exec();
 }

@@ -11,7 +11,7 @@ file(MAKE_DIRECTORY "${INC_DIR}")
 #############################
 #
 find_package(OpenCV REQUIRED)
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ##########################

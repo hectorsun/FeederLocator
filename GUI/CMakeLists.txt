@@ -29,6 +29,7 @@ add_executable(FeederLocator
   "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CThread.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/CSettingDlg.cpp"
+#"${CMAKE_CURRENT_SOURCE_DIR}/src/CStepDlg.cpp"
   src/CStepDlg.cpp
   "${RESOURCE_ADDED}")
 

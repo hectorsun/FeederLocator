@@ -45,7 +45,80 @@ CMainWindow::CMainWindow()
   
   cout <<"exit CMainWindow() " <<endl;
 }
+void CMainWindow::print(int p,int q){
+	//cout << "hello " << p << endl;
+	QString strCorrectNum;
+    switch(p)
+	{
+	case 0:
+		m_pList->addItem(tr("飞达成功接入"));
+		break;
+	case 1:
+		m_pList->addItem(tr("飞达操作没有完成，请等待"));
+		break;
+	case 2:
+		m_pList->addItem(tr("EEPROM写入错误"));
+		break;
+	case 3:
+		m_pList->addItem(tr("记录成功"));
+		break;
+	case 4:
+		m_pList->addItem(tr("复位成功"));
+		break;
+	case 5:
+		m_pList->addItem(tr("电机运行故障"));
+		break;
+	case 6:
+		m_pList->addItem(tr("目前数据为空"));
+		break;
+	case 7:
+		m_pList->addItem(tr("无故障"));
+		break;
+	case 8:
+		m_pList->addItem(tr("当前模式不可用"));
+		break;	
+	case 9:
+		m_pList->addItem(tr("检测完毕，无故障"));
+		break;
+	case 10:
+		strCorrectNum = QString::number(q);
+		m_pList->addItem(tr("无法矫正齿位，数目为：") + strCorrectNum);
+		break;
+	case 11:
+		m_pList->addItem(tr("记录矫正数据成功"));
+		break;	
+	case 12:
+		m_pList->addItem(tr("飞达矫正数据失败"));
+		break;
+	case 13:
+		m_pList->addItem(tr("记录矫正数据写入EEPROM成功"));
+		break;
+	case 14:
+		m_pList->addItem(tr("记录矫正数据写入EEPROM错误"));
+		break;
+	case 15:
+		m_pList->addItem(tr("记录矫正数据读写EEPROM错误"));
+		break;  
+	case 16:
+		m_pList->addItem(tr("记录矫正数据成功"));
+		break; 
+	case 17:
+		m_pList->addItem(tr("记录矫正数据失败"));
+		break; 
+	case 18:
+		m_pList->addItem(tr("清除数据成功"));
+		break; 
+	case 19:
+		m_pList->addItem(tr("清除数据失败")); 
+		break;
+	case 20:
+		m_pList->addItem(tr("移动成功"));
+		break;
+	default:
+		break;
 
+	}
+}
 void
 CMainWindow::closeEvent(QCloseEvent* event){
   m_pThread->quitThread();
