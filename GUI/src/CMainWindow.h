@@ -1,6 +1,6 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
-
+#include <boost/asio.hpp>
 #include <QtWidgets>
 #include <QMainWindow>
 #include <CPaintWidget.h>
@@ -37,6 +37,7 @@ private slots:
   /** @brief step running
    */
   void step();
+
 protected:
   void closeEvent(QCloseEvent* event);
 

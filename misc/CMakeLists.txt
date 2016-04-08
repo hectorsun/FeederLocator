@@ -24,7 +24,7 @@ add_library(misc SHARED src/CDataSet.cpp
 
 
 
-target_link_libraries(misc Qt5::Widgets ${Boost_LIBRARIES} boost_thread)
+target_link_libraries(misc Qt5::Widgets ${Boost_LIBRARIES})
 #message("${OpenCV_LIBS}")
 message("${Boost_LIBRARIES}")
 if (WIN32)

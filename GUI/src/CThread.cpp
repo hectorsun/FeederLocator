@@ -1,3 +1,4 @@
+#include <boost/asio.hpp>
 #include <CThread.h>
 #include <string>
 

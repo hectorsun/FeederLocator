@@ -1,3 +1,4 @@
+#include <boost/asio.hpp>
 #include <CSettingDlg.h>
 #include <iostream>
 using std::cout;

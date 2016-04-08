@@ -1,7 +1,8 @@
 #include "misc/CSuperTerminal.h"
-#include "boost/thread/thread.hpp"
+
 
 #include "../../GUI/src/CMainWindow.h"
+
 extern CMainWindow *mainWindowPtr;
 char vv[4];
 
@@ -13,9 +14,26 @@ tt(boost::bind(&io_service::run,&m_ios))
      if (pSerialPort)
      {
         //cout << "Initing... " ; 
-        const anytype port_name = "/dev/ttyUSB0";
-	init_port(port_name,8);
-	async_read(*pSerialPort, buffer(vv,4), boost::bind(&SuperTerminal::handle_read,this,vv,_1, _2));
+        const anytype port_name = "COM3";
+	 init_port(port_name,8);
+	 //初始化，运行程序后先发送飞达连接指令
+	 int RandNum;
+     char RandCh;
+     RandNum = rand()%128;
+     RandCh = (char)RandNum;
+     char string[4],stringKey[4];
+	 string[0] = 0x27;
+     string[1] = RandCh;//0x00 -
+     string[2] = RandCh;//2mm
+     string[3] = RandCh;
+     /*指令加密……*/
+     stringKey[0] = string[0]^string[3];
+     stringKey[1] = string[0]^string[1]^string[3];
+     stringKey[2] = string[0]^string[2]^string[3];
+     stringKey[3] = string[3];
+	 write_to_serial(stringKey,4);
+
+	 async_read(*pSerialPort, buffer(vv,4), boost::bind(&SuperTerminal::handle_read,this,vv,_1, _2));
      }
  }
 SuperTerminal::~SuperTerminal()
@@ -69,8 +87,7 @@ void SuperTerminal::write_to_serial(const char* data,const int num)
      if(buf[0]==0x57)
      {	
 		mainWindowPtr->print(0,0);
-		feederFlag = 1;
-
+		feederFlag = 1;		
      }
      }
      else{

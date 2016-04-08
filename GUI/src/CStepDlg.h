@@ -1,21 +1,28 @@
 #ifndef CSTEPDLG_H
 #define CSTEPDLG_H
-
+//#define WIN32_LEAN_AND_MEAN 
+//#include <misc/CSuperTerminal.h>
+#include <misc/CSuperTerminal.h>
 #include <QtWidgets>
-#include <CPaintWidget.h>
 #include <QListWidget>
 #include <QMessageBox>
+
+
+#include <CPaintWidget.h>
 //#include <CSuperTerminal.h>
-#include <misc/CSuperTerminal.h>
-#include <termios.h>
-class CStepDlg: public QDialog{
-  Q_OBJECT
+
+
+class CStepDlg : public QDialog{
+Q_OBJECT
+
 
 public:
-  CStepDlg(CPaintWidget* pPaint, QListWidget* m_pList, QWidget* parent=0);
+  CStepDlg(CPaintWidget* pPaint, QListWidget* m_pList ,QWidget* parent=0);
+  
 private:
   CPaintWidget *m_pPaint;
   QListWidget *m_pList;
+  //SuperTerminal sp;
 
   QTabWidget *m_pTabWidget;
   QPushButton *m_pButtonMove;//移动
@@ -64,12 +71,12 @@ private slots:
   void ForwardButton();//前进slot
   void BackwardButton();//后退slot
   void ResetButton();//复位slot
-
+  void setPosition();
  // void ComReceive();
  // void ComSend(char* string);
-//  void ComOpen();
-  //void openCom();
-//void test();
+ // void ComOpen();
+ // void openCom();
+ // void test();
 };
 
 

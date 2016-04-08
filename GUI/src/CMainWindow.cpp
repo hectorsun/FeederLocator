@@ -1,16 +1,18 @@
 #include <CMainWindow.h>
+#include <misc/CDataSet.h>
 
 #include <QSplitter>
 #include <QIcon>
 
 #include <Camera/CCamera.h>
-#include <misc/CDataSet.h>
-
 
 #include <iostream>
 using std::cout;
 using std::endl;
 #include <sstream>
+
+//#include <QMessageBox>
+//#include <QString>
 
 CMainWindow::CMainWindow()
 {
@@ -26,7 +28,7 @@ CMainWindow::CMainWindow()
   
   m_pList = new QListWidget();
   m_pPaint = new CPaintWidget(m_pList);
-  
+
 
   m_pThread = new CThread(m_pList, m_pPaint, this);
 
@@ -38,81 +40,86 @@ CMainWindow::CMainWindow()
   mainSplitter->addWidget(m_pPaint);
   mainSplitter->addWidget(m_pList);
 
-
   m_pThread->start();
   
   this->setCentralWidget(mainSplitter);
-  
+
   cout <<"exit CMainWindow() " <<endl;
 }
+
 void CMainWindow::print(int p,int q){
 	//cout << "hello " << p << endl;
 	QString strCorrectNum;
+	if(p != 0)
+	{
+		m_pList->setCurrentRow(m_pList->count()-1);
+	}
     switch(p)
 	{
 	case 0:
-		m_pList->addItem(tr("飞达成功接入"));
+		cout<<"飞达连接成功"<<endl;
+		//m_pList->addItem(QString::fromLocal8Bit("飞达操作没有完成，请等待") + tr("\r\n")
 		break;
 	case 1:
-		m_pList->addItem(tr("飞达操作没有完成，请等待"));
+		m_pList->addItem(QString::fromLocal8Bit("飞达操作没有完成，请等待") + tr("\r\n"));
 		break;
 	case 2:
-		m_pList->addItem(tr("EEPROM写入错误"));
+		m_pList->addItem(QString::fromLocal8Bit("EEPROM写入错误") + tr("\r\n"));
 		break;
 	case 3:
-		m_pList->addItem(tr("记录成功"));
+		m_pList->addItem(QString::fromLocal8Bit("记录成功") + tr("\r\n"));
 		break;
 	case 4:
-		m_pList->addItem(tr("复位成功"));
+		m_pList->addItem(QString::fromLocal8Bit("复位成功") + tr("\r\n"));
 		break;
 	case 5:
-		m_pList->addItem(tr("电机运行故障"));
+		m_pList->addItem(QString::fromLocal8Bit("电机运行故障") + tr("\r\n"));
 		break;
 	case 6:
-		m_pList->addItem(tr("目前数据为空"));
+		m_pList->addItem(QString::fromLocal8Bit("目前数据为空") + tr("\r\n"));
 		break;
 	case 7:
-		m_pList->addItem(tr("无故障"));
+		m_pList->addItem(QString::fromLocal8Bit("无故障") + tr("\r\n"));
 		break;
 	case 8:
-		m_pList->addItem(tr("当前模式不可用"));
+		m_pList->addItem(QString::fromLocal8Bit("当前模式不可用") + tr("\r\n"));
 		break;	
 	case 9:
-		m_pList->addItem(tr("检测完毕，无故障"));
+		m_pList->addItem(QString::fromLocal8Bit("检测完毕，无故障") + tr("\r\n"));
 		break;
 	case 10:
 		strCorrectNum = QString::number(q);
-		m_pList->addItem(tr("无法矫正齿位，数目为：") + strCorrectNum);
+		m_pList->addItem(QString::fromLocal8Bit("无法矫正齿位，数目为：") + strCorrectNum + tr("\r\n"));
 		break;
 	case 11:
-		m_pList->addItem(tr("记录矫正数据成功"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据成功") + tr("\r\n"));
 		break;	
 	case 12:
-		m_pList->addItem(tr("飞达矫正数据失败"));
+		m_pList->addItem(QString::fromLocal8Bit("飞达矫正数据失败") + tr("\r\n"));
 		break;
 	case 13:
-		m_pList->addItem(tr("记录矫正数据写入EEPROM成功"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据写入EEPROM成功") + tr("\r\n"));
 		break;
 	case 14:
-		m_pList->addItem(tr("记录矫正数据写入EEPROM错误"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据写入EEPROM错误") + tr("\r\n"));
 		break;
 	case 15:
-		m_pList->addItem(tr("记录矫正数据读写EEPROM错误"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据读写EEPROM错误") + tr("\r\n"));
 		break;  
 	case 16:
-		m_pList->addItem(tr("记录矫正数据成功"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据成功") + tr("\r\n"));
 		break; 
 	case 17:
-		m_pList->addItem(tr("记录矫正数据失败"));
+		m_pList->addItem(QString::fromLocal8Bit("记录矫正数据失败") + tr("\r\n"));
 		break; 
 	case 18:
-		m_pList->addItem(tr("清除数据成功"));
+		m_pList->addItem(QString::fromLocal8Bit("清除数据成功") + tr("\r\n"));
 		break; 
 	case 19:
-		m_pList->addItem(tr("清除数据失败")); 
+		m_pList->addItem(QString::fromLocal8Bit("清除数据失败") + tr("\r\n")); 
 		break;
 	case 20:
-		m_pList->addItem(tr("移动成功"));
+		m_pList->addItem(QString::fromLocal8Bit("移动成功") + tr("\r\n"));
 		break;
 	default:
 		break;
@@ -260,5 +267,7 @@ CMainWindow::step()
   m_pStepDlg->raise();
   m_pStepDlg->activateWindow();
 }
+
+
 
 

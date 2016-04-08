@@ -1,3 +1,4 @@
+
 #include <CPaintWidget.h>
 #include <Camera/CCamera.h>
 
