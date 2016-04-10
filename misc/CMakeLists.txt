@@ -2,6 +2,7 @@ find_package(Qt5Widgets)
 project(misc)
 
 add_definitions(-DMISCAPI_EXPORTS)
+add_definitions(-DBOOST_ALL_DYN_LINK)
 
 # copy all header file in "${CMAKE_CURRENT_SOURCE_DIR}/include/"
 #  into "${CMAKE_BINARY_DIR}/include/misc"
