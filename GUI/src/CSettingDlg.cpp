@@ -1,6 +1,7 @@
 #include <boost/asio.hpp>
 #include <CSettingDlg.h>
 #include <iostream>
+#include <sstream>
 using std::cout;
 using std::endl;
 
@@ -207,13 +208,23 @@ CSettingGetWidthOfPixel::getWidthOfPixel(){
     l_qRes1.setBottom(result1.bottom);
     l_qRes1.setLeft(result1.left);
     l_qRes1.setRight(result1.right);
-
+    CDataSet::getInstance().setFirstChipCenter(result1.getCenter());
+    
     QRect l_qRes2;
     l_qRes2.setTop(result2.top);
     l_qRes2.setBottom(result2.bottom);
     l_qRes2.setLeft(result2.left);
     l_qRes2.setRight(result2.right);
+    CDataSet::getInstance().setSecondChipCenter(result2.getCenter());
 
+    if (result1.getCenter().x == result2.getCenter().y){
+      
+    }else{
+      CDataSet::getInstance().setWidthOfPixel(result1.getCenter().getDist(result2.getCenter())/
+					       CDataSet::getInstance().getDistanceBetweenChip() );
+    }
+
+    
     m_pPaint->setTwoChip(m_firstChip, l_qRes1, m_secondChip, l_qRes2);
     m_pPaint->setShowMode(CPaintWidget::withTwoChip);
     emit m_pPaint->refresh();
@@ -279,7 +290,7 @@ CSettingBaseAndChip::setBaseArea(){
 
   }
   else{
-    CDataSet::getInstance().setChipRect(roi);
+    CDataSet::getInstance().setBaseRect(roi);
 
     QRect l_qRes;
     l_qRes.setTop(result.top);
@@ -322,6 +333,12 @@ CSettingBaseAndChip::setChipArea(){
     l_qRes.setBottom(result.bottom);
     l_qRes.setLeft(result.left);
     l_qRes.setRight(result.right);
+
+    double diff = imgGetDiff(result.getCenter());
+    std::ostringstream ost;
+    ost<<"result" << diff;
+    m_pList->addItem(QString::fromStdString(ost.str()));
+    
     
     m_pPaint->setOneChip(l_rectSelected, l_qRes);
     m_pPaint->setShowMode(CPaintWidget::withOneChip);

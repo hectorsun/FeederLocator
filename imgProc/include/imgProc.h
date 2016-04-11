@@ -2,6 +2,7 @@
 #define MISC_IMG_PROC_H
 
 #include "imgprocdef.h"
+#include "cmath"
 
 class IMGPROC_EXPORTS imgPoint{
  public:
@@ -9,6 +10,18 @@ class IMGPROC_EXPORTS imgPoint{
     x = x_;
     y = y_;
   }
+  imgPoint  operator - (const imgPoint& _a) const{
+    return imgPoint(x-_a.x, y-_a.y);
+  }
+
+  double getDist(const imgPoint& _a) const{
+    imgPoint a = *this - _a;
+
+    return std::sqrt(a.x*a.x + a.y*a.y);
+
+  }
+
+  
   int x;
   int y;
 };
@@ -46,5 +59,8 @@ int IMGPROC_EXPORTS imgChipLocate(unsigned char* data, int width, int height,
 
 int IMGPROC_EXPORTS imgBaseLocate(unsigned char* data, int width, int height,
 				  imgRect& roi, imgRect* baseLocation);
+
+
+double IMGPROC_EXPORTS imgGetDiff(const imgPoint& _center);
 
 #endif

@@ -1,6 +1,7 @@
 
 #include <CPaintWidget.h>
 #include <Camera/CCamera.h>
+#include <misc/CDataSet.h>
 
 #include <sstream>
 #include <iostream>
@@ -95,6 +96,12 @@ CPaintWidget::refreshPaint()
     imagePainter.setPen(m_penPos);
     imagePainter.drawRect(m_firstChipPos.normalized());
     imagePainter.drawRect(m_secondChipPos.normalized());
+
+    imagePainter.setPen(m_penRoi);
+    imagePainter.drawLine(CDataSet::getInstance().getFirstChipCenter().x,
+			  CDataSet::getInstance().getFirstChipCenter().y,
+			  CDataSet::getInstance().getSecondChipCenter().x,
+			  CDataSet::getInstance().getSecondChipCenter().y);
     break;
   case withBaseAndChip:
     imagePainter.setPen(m_penRoi);

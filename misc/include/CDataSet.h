@@ -34,6 +34,13 @@ public:
   double getWidthOfPixel(){
     return m_dWidthOfPixel;
   }
+
+  double getDistanceBetweenChip(){
+
+    return m_dDistBetChip;
+  }
+
+  
   /**
   
    */
@@ -49,6 +56,22 @@ public:
   }
   imgRect& getChipRect(){
     return m_chipRect;
+  }
+
+  void setFirstChipCenter(const imgPoint _center){
+    m_firstChipCenter = _center;
+  }
+
+  imgPoint getFirstChipCenter(){
+    return m_firstChipCenter;
+  }
+
+  void setSecondChipCenter(const imgPoint _center){
+    m_secondChipCenter = _center;
+  }
+
+  imgPoint getSecondChipCenter(){
+    return m_secondChipCenter;
   }
   
  private:
@@ -78,8 +101,11 @@ public:
 		 imgPoint& point_);
 private:
   double   m_dWidthOfPixel;
-  imgRect m_baseRect;
-  imgRect m_chipRect;
+  double   m_dDistBetChip;
+  imgRect  m_baseRect;
+  imgRect  m_chipRect;
+  imgPoint m_firstChipCenter;
+  imgPoint m_secondChipCenter;
 };
 
 

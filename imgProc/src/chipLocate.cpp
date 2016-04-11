@@ -1,7 +1,7 @@
 #include <imgProc/imgProc.h>
 
 #include <opencv2/opencv.hpp>
-
+#include <misc/CDataSet.h>
 
 #include <vector>
 
@@ -84,4 +84,15 @@ int  imgChipLocate(unsigned char* data, int width, int height,
   chipPosition->left   = roi.left + maxRect.tl().x;
   chipPosition->right  = roi.left + maxRect.br().x;
   return 0;
+}
+
+
+double 
+imgGetDiff(const imgPoint& _center){
+  imgPoint a = _center - CDataSet::getInstance().getBaseRect().getCenter();
+  imgPoint b = CDataSet::getInstance().getFirstChipCenter() -
+    CDataSet::getInstance().getSecondChipCenter();
+
+  return (a.x*b.x+a.y*b.y)*CDataSet::getInstance().getWidthOfPixel();
+   
 }

@@ -10,6 +10,7 @@ CDataSet::CDataSet()
 {
   m_baseRect.top =1;
   m_dWidthOfPixel = 0.1;
+  m_dDistBetChip = 5.0;
 }
 
 int
@@ -24,7 +25,9 @@ CDataSet::saveData(const std::string path)
   pt.put("config.Width_Of_Pixel", m_dWidthOfPixel);
   saveRect(pt, std::string("config.baseRect"), m_baseRect);
   saveRect(pt, std::string("config.chipRect"), m_chipRect);
-  
+
+  savePoint(pt, std::string("config.firstChipCenter"), m_firstChipCenter);
+  savePoint(pt, std::string("config.secondChipCenter"), m_secondChipCenter);
   boost::property_tree::write_xml(path, pt);
   return 0;
 }
@@ -41,6 +44,8 @@ CDataSet::loadData(const std::string path)
   
   loadRect(pt, "config.baseRect", m_baseRect);
   loadRect(pt, "config.chipRect", m_chipRect);
+  loadPoint(pt, "config.firstChipCenter", m_firstChipCenter);
+  loadPoint(pt, "config.secondChipCenter", m_secondChipCenter);
 
   return 0;
 }
