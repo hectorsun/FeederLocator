@@ -1,12 +1,15 @@
-#include "misc/CSuperTerminal.h"
-
+﻿#include "misc/CSuperTerminal.h"
+//#include "misc/logging.h"
 
 #include "../../GUI/src/CMainWindow.h"
 
-extern CMainWindow *mainWindowPtr;
+//extern CMainWindow *mainWindowPtr;
+SuperTerminal *Ptr;
+
 char vv[4];
 
 int feederFlag = 0;
+
 SuperTerminal::SuperTerminal():pSerialPort(NULL),work(m_ios),
 tt(boost::bind(&io_service::run,&m_ios))
   {
@@ -16,7 +19,7 @@ tt(boost::bind(&io_service::run,&m_ios))
         //cout << "Initing... " ; 
         const anytype port_name = "COM3";
 	 init_port(port_name,8);
-	 //��ʼ�������г�����ȷ��ͷɴ�����ָ��
+	 //初始化，运行程序后先发送飞达连接指令
 	 int RandNum;
      char RandCh;
      RandNum = rand()%128;
@@ -26,7 +29,7 @@ tt(boost::bind(&io_service::run,&m_ios))
      string[1] = RandCh;//0x00 -
      string[2] = RandCh;//2mm
      string[3] = RandCh;
-     /*ָ����ܡ���*/
+     /*指令加密……*/
      stringKey[0] = string[0]^string[3];
      stringKey[1] = string[0]^string[1]^string[3];
      stringKey[2] = string[0]^string[2]^string[3];
@@ -86,116 +89,189 @@ void SuperTerminal::write_to_serial(const char* data,const int num)
      if(feederFlag == 0){
      if(buf[0]==0x57)
      {	
-		mainWindowPtr->print(0,0);
+	        Ptr->print(0,0);
 		feederFlag = 1;		
      }
      }
      else{
      if(buf[0]==0x63&&buf[1]==0x7F)
      {	
-		mainWindowPtr->print(1,0);
+		Ptr->print(1,0);
 
      }
      if(buf[0]==0x63&&buf[1]==0x20)
      {	
-		mainWindowPtr->print(2,0);
+	        Ptr->print(2,0);
 
      }
      if(buf[0]==0x63&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(3,0);
+	        Ptr->print(3,0);
 
      }
      if(buf[0]==0x64&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(4,0);
+	        Ptr->print(4,0);
 
      }
      if(buf[0]==0x64&&buf[1]==0x10)
      {	
-		mainWindowPtr->print(5,0);
+	        Ptr->print(5,0);
 
      }
      if(buf[0]==0x64&&buf[1]==0x20)
      {	
-		mainWindowPtr->print(6,0);
+	        Ptr->print(6,0);
 
      }
      if(buf[0]==0x66&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(7,0);
+	        Ptr->print(7,0);
 
      }
      if(buf[0]==0x66&&buf[1]==0x29)
      {	
-		mainWindowPtr->print(8,0);
+	        Ptr->print(8,0);
 
      }
      if(buf[0]==0x65&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(9,0);
+	        Ptr->print(9,0);
 
      }
      if(buf[0]==0x65&&buf[1]==0x40)
      {			
 		int sum = (int)(buf[2]);
-		mainWindowPtr->print(10,sum);
+	        Ptr->print(10,sum);
 
      }
      if(buf[0]==0x68&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(11,0);
+	        Ptr->print(11,0);
 
      }
      if(buf[0]==0x68&&buf[1]==0x7F)
      {	
-		mainWindowPtr->print(12,0);
+	        Ptr->print(12,0);
 
      }
      if(buf[0]==0x70&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(13,0);
+	        Ptr->print(13,0);
 
      }
      if(buf[0]==0x70&&buf[1]==0x20)
      {	
-		mainWindowPtr->print(14,0);
+	        Ptr->print(14,0);
 
      }
      if(buf[0]==0x70&&buf[1]==0x22)
      {	
-		mainWindowPtr->print(15,0);
+	       Ptr->print(15,0);
 
      }
      if(buf[0]==0x69&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(16,0);
+	        Ptr->print(16,0);
 
      }
      if(buf[0]==0x69&&buf[1]==0x7F)
      {	
-		mainWindowPtr->print(17,0);
+	        Ptr->print(17,0);
 
      }
      if(buf[0]==0x71&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(18,0);
+	        Ptr->print(18,0);
 
      }
      if(buf[0]==0x71&&buf[1]==0x01)
      {	
-		mainWindowPtr->print(19,0);
+	        Ptr->print(19,0);
 
      }
      if(buf[0]==0x67&&buf[1]==0x00)
      {	
-		mainWindowPtr->print(20,0);
+	        Ptr->print(20,0);
 
      }
      }
- }
+}
 
 
+void SuperTerminal::print(int p, int q)
+{
+
+    switch(p)
+	{
+	case 0:
+		cout<<"飞达连接成功"<<endl;
+		//m_pList->addItem(QString::fromLocal8Bit("飞达操作没有完成，请等待") + tr("\r\n")
+		break;
+	case 1:
+		cout<<"飞达操作没有完成，请等待"<<endl;
+		break;
+	case 2:
+		cout<<"EEPROM写入错误"<<endl;
+		break;
+	case 3:
+		cout<<"记录成功"<<endl;
+		break;
+	case 4:
+		cout<<"复位成功"<<endl;
+		break;
+	case 5:
+		cout<<"电机运行故障"<<endl;
+		break;
+	case 6:
+		cout<<"目前数据为空"<<endl;
+		break;
+	case 7:
+		cout<<"无故障"<<endl;
+		break;
+	case 8:
+		cout<<"当前模式不可用"<<endl;
+		break;	
+	case 9:
+		cout<<"检测完毕，无故障"<<endl;
+		break;
+	case 10:
+		cout<<"无法矫正齿位，数目为："<<q<<endl;
+		break;
+	case 11:
+		cout<<"记录矫正数据成功"<<endl;
+		break;	
+	case 12:
+		cout<<"记录矫正数据失败"<<endl;
+		break;
+	case 13:
+		cout<<"记录矫正数据写入EEPROM成功"<<endl;
+		break;
+	case 14:
+		cout<<"记录矫正数据写入EEPROM错误"<<endl;
+		break;
+	case 15:
+		cout<<"记录矫正数据读写EEPROM错误"<<endl;
+		break;
+	case 16:
+		cout<<"记录矫正数据成功"<<endl;
+		break; 
+	case 17:
+		cout<<"记录矫正数据失败"<<endl;
+		break; 
+	case 18:
+		cout<<"清除数据成功"<<endl;
+		break; 
+	case 19:
+		cout<<"清除数据失败"<<endl;
+		break;
+	case 20:
+		cout<<"移动成功"<<endl;
+		break;
+	default:
+		break;
+	}
+}
  void SuperTerminal::read_from_serial()
  {
      char v[4];

@@ -1,4 +1,4 @@
-#include <CMainWindow.h>
+﻿#include <CMainWindow.h>
 #include <misc/CDataSet.h>
 
 #include <QSplitter>

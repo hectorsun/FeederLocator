@@ -47,7 +47,7 @@ CStepDlg::CStepDlg(CPaintWidget* pPaint, QListWidget* pList, QWidget* parent)
     this->setWindowTitle(tr("step"));
 
     /*****************************/
-    //QVBoxLayout *topLayout = new QVBoxLayout();//å‚ç›´å¸ƒå±€
+    //QVBoxLayout *topLayout = new QVBoxLayout();//´¹Ö±²¼¾Ö
     //QVBoxLayout *testLayout = new QVBoxLayout();
     /**************************/
     QGridLayout *LeftLayout = new QGridLayout();
@@ -56,10 +56,10 @@ CStepDlg::CStepDlg(CPaintWidget* pPaint, QListWidget* pList, QWidget* parent)
     mainLayout->addLayout(LeftLayout);
     mainLayout->addLayout(RightLayout);
 
-    //m_pButtonMove = new QPushButton(tr("ç§»åŠ¨"));
-	m_pButtonMove = new QPushButton(QString::fromLocal8Bit("ç§»åŠ¨"));
+    //m_pButtonMove = new QPushButton(tr("ÒÆ¶¯"));
+	m_pButtonMove = new QPushButton(QString::fromLocal8Bit("ÒÆ¶¯"));
     connect(m_pButtonMove, SIGNAL(clicked()),
-        this, SLOT(MoveButton()));//clickedä¿¡å·åè°ƒç”¨MoveButtonï¼ˆï¼‰æ§½å‡½æ•°
+        this, SLOT(MoveButton()));//clickedĞÅºÅºóµ÷ÓÃMoveButton£¨£©²Ûº¯Êı
 	connect(m_pButtonMove, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     LeftLayout->addWidget(m_pButtonMove,0,0);
@@ -67,35 +67,35 @@ CStepDlg::CStepDlg(CPaintWidget* pPaint, QListWidget* pList, QWidget* parent)
     m_pLineMove = new QLineEdit(this);
     LeftLayout->addWidget(m_pLineMove,0,1);
 
-    m_pButtonRecord = new QPushButton(QString::fromLocal8Bit("è®°å½•"));
+    m_pButtonRecord = new QPushButton(QString::fromLocal8Bit("¼ÇÂ¼"));
     connect(m_pButtonRecord, SIGNAL(clicked()),
         this, SLOT(RecordButton()));
 	connect(m_pButtonRecord, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     LeftLayout->addWidget(m_pButtonRecord,1,0);
 
-    m_pButtonErrnum = new QPushButton(QString::fromLocal8Bit("æ— æ³•çŸ«æ­£é½¿ä½"));
+    m_pButtonErrnum = new QPushButton(QString::fromLocal8Bit("ÎŞ·¨½ÃÕı³İÎ»"));
     connect(m_pButtonErrnum, SIGNAL(clicked()),
         this, SLOT(ErrnumButton()));
 	connect(m_pButtonErrnum, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     LeftLayout->addWidget(m_pButtonErrnum,1,1);
 
-    m_pButtonZerocorrect = new QPushButton(QString::fromLocal8Bit("é›¶ä½è°ƒæ•´"));
+    m_pButtonZerocorrect = new QPushButton(QString::fromLocal8Bit("ÁãÎ»µ÷Õû"));
     connect(m_pButtonZerocorrect, SIGNAL(clicked()),
         this, SLOT(ZerocorrectButton()));
 	connect(m_pButtonZerocorrect, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     LeftLayout->addWidget(m_pButtonZerocorrect,2,0);
 
-    m_pButtonSinglecorrect = new QPushButton(QString::fromLocal8Bit("å•é½¿è°ƒæ•´"));
+    m_pButtonSinglecorrect = new QPushButton(QString::fromLocal8Bit("µ¥³İµ÷Õû"));
     connect(m_pButtonSinglecorrect, SIGNAL(clicked()),
         this, SLOT(SinglecorrectButton()));
 	connect(m_pButtonSinglecorrect, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     LeftLayout->addWidget(m_pButtonSinglecorrect,2,1);
 
-    m_pButtonDatareset = new QPushButton(QString::fromLocal8Bit("æ•°æ®é‡ç½®"));
+    m_pButtonDatareset = new QPushButton(QString::fromLocal8Bit("Êı¾İÖØÖÃ"));
     connect(m_pButtonDatareset, SIGNAL(clicked()),
         this, SLOT(DataresetButton()));
 	connect(m_pButtonDatareset, SIGNAL(clicked()),
@@ -104,34 +104,34 @@ CStepDlg::CStepDlg(CPaintWidget* pPaint, QListWidget* pList, QWidget* parent)
 
     m_pComboDataReset = new QComboBox();
     m_pComboDataReset->addItem(QString::fromLocal8Bit(""));
-    m_pComboDataReset->addItem(QString::fromLocal8Bit("æ¸…é™¤å…¨éƒ¨æ•°æ®"));
-    m_pComboDataReset->addItem(QString::fromLocal8Bit("é‡ç½®çŸ«æ­£æ•°æ®"));
-    m_pComboDataReset->addItem(QString::fromLocal8Bit("æ¸…é™¤å…¨é½¿æ•°æ®"));
-    m_pComboDataReset->addItem(QString::fromLocal8Bit("æ¸…é™¤åŠé½¿æ•°æ®"));
+    m_pComboDataReset->addItem(QString::fromLocal8Bit("Çå³ıÈ«²¿Êı¾İ"));
+    m_pComboDataReset->addItem(QString::fromLocal8Bit("ÖØÖÃ½ÃÕıÊı¾İ"));
+    m_pComboDataReset->addItem(QString::fromLocal8Bit("Çå³ıÈ«³İÊı¾İ"));
+    m_pComboDataReset->addItem(QString::fromLocal8Bit("Çå³ı°ë³İÊı¾İ"));
     LeftLayout->addWidget(m_pComboDataReset,3,1);
 
-    m_pButtonForward = new QPushButton(QString::fromLocal8Bit("å‰è¿›"));
+    m_pButtonForward = new QPushButton(QString::fromLocal8Bit("Ç°½ø"));
     connect(m_pButtonForward, SIGNAL(clicked()),
         this, SLOT(ForwardButton()));
 	connect(m_pButtonForward, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     RightLayout->addWidget(m_pButtonForward,0,0);
 
-    m_pButtonBackward = new QPushButton(QString::fromLocal8Bit("åé€€"));
+    m_pButtonBackward = new QPushButton(QString::fromLocal8Bit("ºóÍË"));
     connect(m_pButtonBackward, SIGNAL(clicked()),
         this, SLOT(BackwardButton()));
 	connect(m_pButtonBackward, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     RightLayout->addWidget(m_pButtonBackward,1,0);
 
-    m_pButtonReset = new QPushButton(QString::fromLocal8Bit("å¤ä½"));
+    m_pButtonReset = new QPushButton(QString::fromLocal8Bit("¸´Î»"));
     connect(m_pButtonReset, SIGNAL(clicked()),
         this, SLOT(ResetButton()));
 	connect(m_pButtonReset, SIGNAL(clicked()),
         this, SLOT(setPosition()));
     RightLayout->addWidget(m_pButtonReset,2,0);
 
-    m_pLabelPace = new QLabel(QString::fromLocal8Bit("æ­¥è·"));
+    m_pLabelPace = new QLabel(QString::fromLocal8Bit("²½¾à"));
     RightLayout->addWidget(m_pLabelPace,3,0);
 
     m_pComboPace = new QComboBox();
@@ -144,7 +144,7 @@ CStepDlg::CStepDlg(CPaintWidget* pPaint, QListWidget* pList, QWidget* parent)
 
     this->setLayout(mainLayout);
 	
-    /*************æ¥æ”¶å¤„ç†****************/
+    /*************½ÓÊÕ´¦Àí****************/
    /* SuperTerminal sp;
     sp.read_from_serial();
     sp.call_handle();
@@ -191,13 +191,13 @@ void CStepDlg::MoveButton()
             string[2] = 0x00;
             string[3] = MoveCh%256;
 	    
-            /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+            /*Ö¸Áî¼ÓÃÜ¡­¡­*/
             stringKey[0] = string[0]^string[3];
             stringKey[1] = string[0]^string[1]^string[3];
             stringKey[2] = string[0]^string[2]^string[3];
             stringKey[3] = string[3];
 
-            m_pList->addItem(QString::fromLocal8Bit("å‘å‰ç§»åŠ¨") + strMove + QString::fromLocal8Bit("å¾®æ­¥ï¼ˆmmï¼‰\r\n"));/*show the message in mainwindowï¼š å‘å‰ç§»åŠ¨*/
+            m_pList->addItem(QString::fromLocal8Bit("ÏòÇ°ÒÆ¶¯") + strMove + QString::fromLocal8Bit("Î¢²½£¨mm£©\r\n"));/*show the message in mainwindow£º ÏòÇ°ÒÆ¶¯*/
             /*m_Comm.WriteToPort(stringKey,4)*/
     	    //SuperTerminal sp;
             sp.write_to_serial(stringKey,4);
@@ -213,13 +213,13 @@ void CStepDlg::MoveButton()
             string[1] = MoveCh3/256;
             string[2] = 0x01;
             string[3] = MoveCh3%256;
-            /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+            /*Ö¸Áî¼ÓÃÜ¡­¡­*/
             stringKey[0] = string[0]^string[3];
             stringKey[1] = string[0]^string[1]^string[3];
             stringKey[2] = string[0]^string[2]^string[3];
             stringKey[3] = string[3];
 
-            m_pList->addItem(QString::fromLocal8Bit("åå‘ç§»åŠ¨") + strMove + QString::fromLocal8Bit("å¾®æ­¥ï¼ˆmmï¼‰\r\n"));/*show the message in mainwindowï¼š åå‘ç§»åŠ¨*/
+            m_pList->addItem(QString::fromLocal8Bit("·´ÏòÒÆ¶¯") + strMove + QString::fromLocal8Bit("Î¢²½£¨mm£©\r\n"));/*show the message in mainwindow£º ·´ÏòÒÆ¶¯*/
 
             /*m_Comm.WriteToPort(stringKey,4)*/
 			//SuperTerminal sp;
@@ -249,7 +249,7 @@ void CStepDlg::RecordButton()
     string[1] = RandCh;
     string[2] = RandCh;
     string[3] = RandCh;
-    /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+    /*Ö¸Áî¼ÓÃÜ¡­¡­*/
     stringKey[0] = string[0]^string[3];
     stringKey[1] = string[0]^string[1]^string[3];
     stringKey[2] = string[0]^string[2]^string[3];
@@ -261,7 +261,7 @@ void CStepDlg::RecordButton()
     sp.write_to_serial(stringKey,4);
 }
 
-//Click æ— æ³•çŸ«æ­£é½¿ä½ button
+//Click ÎŞ·¨½ÃÕı³İÎ» button
 void CStepDlg::ErrnumButton()
 {
     int RandNum;
@@ -274,7 +274,7 @@ void CStepDlg::ErrnumButton()
     string[1] = RandCh;
     string[2] = RandCh;
     string[3] = RandCh;
-    /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+    /*Ö¸Áî¼ÓÃÜ¡­¡­*/
     stringKey[0] = string[0]^string[3];
     stringKey[1] = string[0]^string[1]^string[3];
     stringKey[2] = string[0]^string[2]^string[3];
@@ -306,13 +306,13 @@ void CStepDlg::ForwardButton()
         string[1] = 0x7F;//0x7F +
         string[2] = 0x00;//2mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
         stringKey[3] = string[3];
 
-        m_pList->addItem(QString::fromLocal8Bit("å‰è¿›ï¼šæ­¥è·ä¸º") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
+        m_pList->addItem(QString::fromLocal8Bit("Ç°½ø£º²½¾àÎª") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
 
         /*m_Comm.WriteToPort(stringKey,4)*/
     	//SuperTerminal sp;
@@ -324,13 +324,13 @@ void CStepDlg::ForwardButton()
         string[1] = 0x7F;//0x7F +
         string[2] = 0x01;//2mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
         stringKey[3] = string[3];
 
-        m_pList->addItem(QString::fromLocal8Bit("å‰è¿›ï¼šæ­¥è·ä¸º") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
+        m_pList->addItem(QString::fromLocal8Bit("Ç°½ø£º²½¾àÎª") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
 
         /*m_Comm.WriteToPort(stringKey,4)*/
     	//SuperTerminal sp;
@@ -366,13 +366,13 @@ void CStepDlg::BackwardButton()
         string[1] = 0x00;//0x00 -
         string[2] = 0x00;//2mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
         stringKey[3] = string[3];
 
-        m_pList->addItem(QString::fromLocal8Bit("åé€€ï¼šæ­¥è·ä¸º") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
+        m_pList->addItem(QString::fromLocal8Bit("ºóÍË£º²½¾àÎª") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
 
         /*m_Comm.WriteToPort(stringKey,4)*/
     	//SuperTerminal sp;
@@ -384,13 +384,13 @@ void CStepDlg::BackwardButton()
         string[1] = 0x00;//0x7F -
         string[2] = 0x01;//4mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
         stringKey[3] = string[3];
 
-        m_pList->addItem(QString::fromLocal8Bit("åé€€ï¼šæ­¥è·ä¸º") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
+        m_pList->addItem(QString::fromLocal8Bit("ºóÍË£º²½¾àÎª") + strPace + QString::fromLocal8Bit("\r\n"));/*show the message in mainwindow*/
 
         /*m_Comm.WriteToPort(stringKey,4)*/
     	//SuperTerminal sp;
@@ -403,7 +403,7 @@ void CStepDlg::BackwardButton()
 
 
 }
-//Click å¤ä½ button
+//Click ¸´Î» button
 void CStepDlg::ResetButton()
 {
     QString strPace;
@@ -425,7 +425,7 @@ void CStepDlg::ResetButton()
         string[1] = 0x00;//0x00 -
         string[2] = RandCh;//2mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
@@ -441,7 +441,7 @@ void CStepDlg::ResetButton()
         string[1] = 0x01;//0x7F -
         string[2] = RandCh;//4mm
         string[3] = RandCh;
-        /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+        /*Ö¸Áî¼ÓÃÜ¡­¡­*/
         stringKey[0] = string[0]^string[3];
         stringKey[1] = string[0]^string[1]^string[3];
         stringKey[2] = string[0]^string[2]^string[3];
@@ -460,7 +460,7 @@ void CStepDlg::ResetButton()
 
     GearNum =0;
 }
-//Click é›¶ä½è°ƒæ•´ button
+//Click ÁãÎ»µ÷Õû button
 void CStepDlg::ZerocorrectButton()
 {
     double Movevalue;
@@ -470,7 +470,7 @@ void CStepDlg::ZerocorrectButton()
     strPace = m_pComboPace->currentText();
     /*if(strPace != tr("4mm"))
     {
-        QMessageBox::warning(this,tr("Warning"),tr("è¯·é€‰æ‹©æ­¥è·ä¸º4mmåå†ç‚¹å‡»é›¶ä½è°ƒæ•´"));
+        QMessageBox::warning(this,tr("Warning"),tr("ÇëÑ¡Ôñ²½¾àÎª4mmºóÔÙµã»÷ÁãÎ»µ÷Õû"));
     }*/
     //else
     //{
@@ -486,7 +486,7 @@ void CStepDlg::ZerocorrectButton()
             }
 
             strMoveValue = QString::number(Movevalue);
-            m_pList->addItem(QString::fromLocal8Bit("æ€»è®¡å‘å‰ç§»åŠ¨") + strMoveValue + QString::fromLocal8Bit("å¾®æ­¥ï¼ˆmmï¼‰\r\n"));/*show the message in mainwindow*/
+            m_pList->addItem(QString::fromLocal8Bit("×Ü¼ÆÏòÇ°ÒÆ¶¯") + strMoveValue + QString::fromLocal8Bit("Î¢²½£¨mm£©\r\n"));/*show the message in mainwindow*/
         }
         else//input is -
         {
@@ -499,7 +499,7 @@ void CStepDlg::ZerocorrectButton()
                 Movevalue = ((int)MoveValueSum)/200.0;
             }
             strMoveValue = QString::number(-Movevalue);
-            m_pList->addItem(QString::fromLocal8Bit("æ€»è®¡åå‘ç§»åŠ¨") + strMoveValue + QString::fromLocal8Bit("å¾®æ­¥ï¼ˆmmï¼‰\r\n"));/*show the message in mainwindow*/
+            m_pList->addItem(QString::fromLocal8Bit("×Ü¼Æ·´ÏòÒÆ¶¯") + strMoveValue + QString::fromLocal8Bit("Î¢²½£¨mm£©\r\n"));/*show the message in mainwindow*/
         }
 
         int MoveInt1 = (int)MoveValueSum;
@@ -516,7 +516,7 @@ void CStepDlg::ZerocorrectButton()
             string[1] = MoveValueSum/256;
             string[2] = 0x00;
             string[3] = MoveValueSum%256;
-            /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+            /*Ö¸Áî¼ÓÃÜ¡­¡­*/
             stringKey[0] = string[0]^string[3];
             stringKey[1] = string[0]^string[1]^string[3];
             stringKey[2] = string[0]^string[2]^string[3];
@@ -532,7 +532,7 @@ void CStepDlg::ZerocorrectButton()
             string[1] = MoveValueSum/256 - 1;
             string[2] = 0x01;
             string[3] = MoveValueSum%256;
-            /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+            /*Ö¸Áî¼ÓÃÜ¡­¡­*/
             stringKey[0] = string[0]^string[3];
             stringKey[1] = string[0]^string[1]^string[3];
             stringKey[2] = string[0]^string[2]^string[3];
@@ -544,20 +544,20 @@ void CStepDlg::ZerocorrectButton()
         }
         else
         {
-            QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//æœ‰ç‚¹é—®é¢˜ï¼ï¼ï¼ï¼
+            QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//ÓĞµãÎÊÌâ£¡£¡£¡£¡
         }
 
         CorrectNum = CorrectNum + 1;
 
         QString strCorrectNum;
         strCorrectNum = QString::number(CorrectNum);
-        m_pList->addItem(QString::fromLocal8Bit("(é›¶ä½è°ƒæ•´)å·²çŸ«æ­£é½¿æ•°ï¼š") + strCorrectNum + QString::fromLocal8Bit("\r\n"));
+        m_pList->addItem(QString::fromLocal8Bit("(ÁãÎ»µ÷Õû)ÒÑ½ÃÕı³İÊı£º") + strCorrectNum + QString::fromLocal8Bit("\r\n"));
 
         //QString strPace;
         //strPace = m_pComboPace->currentText();
         if(strPace == QString::fromLocal8Bit("4mm") && CorrectNum == 40)
         {
-            switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("æ˜¯å¦å°†çŸ«æ­£æ•°æ®å†™å…¥è‡³EEPROMï¼Ÿ"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
+            switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("ÊÇ·ñ½«½ÃÕıÊı¾İĞ´ÈëÖÁEEPROM£¿"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
             {
             case QMessageBox::Yes:
                 CorrectNum = 0;
@@ -571,7 +571,7 @@ void CStepDlg::ZerocorrectButton()
         MoveValueSum = 0;
     //}
 }
-//Click å•é½¿è°ƒæ•´ button
+//Click µ¥³İµ÷Õû button
 void CStepDlg::SinglecorrectButton()
 {
     QString strPace;
@@ -598,7 +598,7 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = GearNum + (0 << 7);
                 string[2] = MoveValueSum/256;
                 string[3] = MoveValueSum%256;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -615,7 +615,7 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = GearNum + (0 << 7);
                 string[2] = MoveValueSum/256 - 1;
                 string[3] = MoveValueSum%256;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -628,7 +628,7 @@ void CStepDlg::SinglecorrectButton()
             }
             else
             {
-                QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//æœ‰ç‚¹é—®é¢˜ï¼ï¼ï¼ï¼
+                QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//ÓĞµãÎÊÌâ£¡£¡£¡£¡
             }
             if(strPace == QString::fromLocal8Bit("2mm") && GearNum == 80)
             {
@@ -636,14 +636,14 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = 0x00;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
                 stringKey[3] = string[3];
 
 				//SuperTerminal sp;
-                switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("80ä¸ªé½¿å·²çŸ«æ­£ç»“æŸï¼Œæ˜¯å¦å†™å…¥EEPROMï¼Ÿ"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
+                switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("80¸ö³İÒÑ½ÃÕı½áÊø£¬ÊÇ·ñĞ´ÈëEEPROM£¿"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
                 {
                 case QMessageBox::Yes:
                     /*m_Comm.WriteToPort(stringKey,4)*/
@@ -667,7 +667,7 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = GearNum + (1 << 7);
                 string[2] = MoveValueSum/256;
                 string[3] = MoveValueSum%256;
-                //*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                //*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -684,7 +684,7 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = GearNum + (1 << 7);
                 string[2] = MoveValueSum/256 - 1;
                 string[3] = MoveValueSum%256;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -697,7 +697,7 @@ void CStepDlg::SinglecorrectButton()
             }
             else
             {
-                QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//æœ‰ç‚¹é—®é¢˜ï¼ï¼ï¼ï¼
+                QMessageBox::warning(this,QString::fromLocal8Bit("Warning"),QString::fromLocal8Bit("Distance has been out of range"));//ÓĞµãÎÊÌâ£¡£¡£¡£¡
             }
 
             if(strPace == QString::fromLocal8Bit("4mm") && GearNum == 40)
@@ -706,14 +706,14 @@ void CStepDlg::SinglecorrectButton()
                 string[1] = 0x01;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
                 stringKey[3] = string[3];
 
 				//SuperTerminal sp;
-                switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("40ä¸ªé½¿å·²çŸ«æ­£ç»“æŸï¼Œæ˜¯å¦å†™å…¥EEPROMï¼Ÿ"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
+                switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("40¸ö³İÒÑ½ÃÕı½áÊø£¬ÊÇ·ñĞ´ÈëEEPROM£¿"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
                 {
                 case QMessageBox::Yes:
                     /*m_Comm.WriteToPort(stringKey,4)*/
@@ -735,7 +735,7 @@ void CStepDlg::SinglecorrectButton()
    }
 }
 
-//Click æ•°æ®é‡ç½® button
+//Click Êı¾İÖØÖÃ button
  void CStepDlg::DataresetButton()
  {
      QString strDatareset;
@@ -753,17 +753,17 @@ void CStepDlg::SinglecorrectButton()
      }
      else
      {
-         switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("æ˜¯å¦ç¡®å®šæ¸…é™¤æ•°æ®ï¼Ÿ"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
+         switch(QMessageBox::question(this,"Question",QString::fromLocal8Bit("ÊÇ·ñÈ·¶¨Çå³ıÊı¾İ£¿"),QMessageBox::Yes |QMessageBox::No,QMessageBox::Yes))
          {
          case QMessageBox::Yes:
 
-            if(strDatareset == QString::fromLocal8Bit("æ¸…é™¤å…¨éƒ¨æ•°æ®"))
+            if(strDatareset == QString::fromLocal8Bit("Çå³ıÈ«²¿Êı¾İ"))
             {
                 string[0] = 0x41;
                 string[1] = 0x00;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -772,15 +772,15 @@ void CStepDlg::SinglecorrectButton()
                 /*m_Comm.WriteToPort(stringKey,4)*/
 				//SuperTerminal sp;
 				sp.write_to_serial(stringKey,4);
-                m_pList->addItem(QString::fromLocal8Bit("æ¸…é™¤å…¨éƒ¨æ•°æ®") + QString::fromLocal8Bit("\r\n"));
+                m_pList->addItem(QString::fromLocal8Bit("Çå³ıÈ«²¿Êı¾İ") + QString::fromLocal8Bit("\r\n"));
             }
-            if(strDatareset == QString::fromLocal8Bit("é‡ç½®çŸ«æ­£æ•°æ®"))
+            if(strDatareset == QString::fromLocal8Bit("ÖØÖÃ½ÃÕıÊı¾İ"))
             {
                 string[0] = 0x41;
                 string[1] = 0x01;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -789,15 +789,15 @@ void CStepDlg::SinglecorrectButton()
                 /*m_Comm.WriteToPort(stringKey,4)*/
 				//SuperTerminal sp;
 				sp.write_to_serial(stringKey,4);
-                m_pList->addItem(QString::fromLocal8Bit("é‡ç½®çŸ«æ­£æ•°æ®") + QString::fromLocal8Bit("\r\n"));
+                m_pList->addItem(QString::fromLocal8Bit("ÖØÖÃ½ÃÕıÊı¾İ") + QString::fromLocal8Bit("\r\n"));
             }
-            if(strDatareset == QString::fromLocal8Bit("æ¸…é™¤å…¨é½¿æ•°æ®"))
+            if(strDatareset == QString::fromLocal8Bit("Çå³ıÈ«³İÊı¾İ"))
             {
                 string[0] = 0x41;
                 string[1] = 0x02;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -806,15 +806,15 @@ void CStepDlg::SinglecorrectButton()
                 /*m_Comm.WriteToPort(stringKey,4)*/
 				//SuperTerminal sp;
 				sp.write_to_serial(stringKey,4);
-                m_pList->addItem(QString::fromLocal8Bit("æ¸…é™¤å…¨é½¿æ•°æ®") + QString::fromLocal8Bit("\r\n"));
+                m_pList->addItem(QString::fromLocal8Bit("Çå³ıÈ«³İÊı¾İ") + QString::fromLocal8Bit("\r\n"));
             }
-            if(strDatareset == QString::fromLocal8Bit("æ¸…é™¤åŠé½¿æ•°æ®"))
+            if(strDatareset == QString::fromLocal8Bit("Çå³ı°ë³İÊı¾İ"))
             {
                 string[0] = 0x41;
                 string[1] = 0x03;
                 string[2] = RandCh;
                 string[3] = RandCh;
-                /*æŒ‡ä»¤åŠ å¯†â€¦â€¦*/
+                /*Ö¸Áî¼ÓÃÜ¡­¡­*/
                 stringKey[0] = string[0]^string[3];
                 stringKey[1] = string[0]^string[1]^string[3];
                 stringKey[2] = string[0]^string[2]^string[3];
@@ -823,7 +823,7 @@ void CStepDlg::SinglecorrectButton()
                 /*m_Comm.WriteToPort(stringKey,4)*/
 				//SuperTerminal sp;
 				sp.write_to_serial(stringKey,4);
-                m_pList->addItem(QString::fromLocal8Bit("æ¸…é™¤åŠé½¿æ•°æ®") + QString::fromLocal8Bit("\r\n"));
+                m_pList->addItem(QString::fromLocal8Bit("Çå³ı°ë³İÊı¾İ") + QString::fromLocal8Bit("\r\n"));
             }
 
         case QMessageBox::No:

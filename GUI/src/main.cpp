@@ -6,7 +6,7 @@
 #include <Camera/CCamera.h>
 
 #include <CMainWindow.h>
-
+//#include <misc/logging.h>
 
 #include <iostream>
 using std::cout;
@@ -16,16 +16,20 @@ using std::endl;
 #pragma execution_character_set("utf-8")
 #endif*/
 
-CMainWindow *mainWindowPtr = NULL;
+//CMainWindow *mainWindowPtr = NULL;
 int main(int argc, char* argv[]){
   QApplication app(argc, argv);
+
+  // boost_log::init("FeederLocator.log");
+  // boost_log::trace("starting FeederLocator");
+
 
   CCamera::getInstance().init();
   
   cout<<"mainWin"<<endl;
   cout<<"你好"<<endl;
-  CMainWindow mainWin;
-  mainWindowPtr = &mainWin;
+   CMainWindow mainWin;
+  // mainWindowPtr = &mainWin;
   mainWin.show();
   //mainWindowPtr = &mainWin;
   return app.exec();

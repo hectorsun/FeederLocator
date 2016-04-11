@@ -1,4 +1,4 @@
-#ifndef CSUPERTERMINA_H
+﻿#ifndef CSUPERTERMINA_H
 #define CSUPERTERMINA_H
 #include <boost/asio.hpp>
  #include <boost/bind.hpp>
@@ -29,7 +29,7 @@
      void read_from_serial();
      void handle_read(char buf[], boost::system::error_code ec,std::size_t bytes_transferred);
      void call_handle();
-
+     void print(int p,int q);
  private:
      io_service m_ios;
      serial_port *pSerialPort;
