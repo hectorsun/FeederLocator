@@ -4,7 +4,12 @@
 #include <misc/CDataSet.h>
 
 #include <vector>
-
+#include <sstream>
+#include <iostream>
+using std::ostringstream;
+using std::cout;
+using std::endl;
+#include <cmath>
 /**
  a simple implement of chop locate algorithm for test
  it should be refined later!!!
@@ -93,6 +98,16 @@ imgGetDiff(const imgPoint& _center){
   imgPoint b = CDataSet::getInstance().getFirstChipCenter() -
     CDataSet::getInstance().getSecondChipCenter();
 
-  return (a.x*b.x+a.y*b.y)*CDataSet::getInstance().getWidthOfPixel();
-   
+  double result =(a.x*b.x+a.y*b.y)*CDataSet::getInstance().getWidthOfPixel()
+    /std::sqrt(b.x*b.x+b.y*b.y);
+
+  ostringstream ostm;
+  ostm<<"_center=( "<<_center.x<<","<<_center.y<<")"<<endl
+      <<"baseRectCenter=("<<CDataSet::getInstance().getBaseRect().getCenter().x
+      <<","<<CDataSet::getInstance().getBaseRect().getCenter().y<<")"<<endl
+      <<"a=("<<a.x<<"," <<a.y<<")"<<endl
+      <<"b=("<<b.x<<"," <<b.y<<")"<<endl
+      <<"result="<<result<<endl;
+  cout<<ostm.str();
+  return result;
 }

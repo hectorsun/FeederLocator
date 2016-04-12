@@ -220,8 +220,12 @@ CSettingGetWidthOfPixel::getWidthOfPixel(){
     if (result1.getCenter().x == result2.getCenter().y){
       
     }else{
-      CDataSet::getInstance().setWidthOfPixel(result1.getCenter().getDist(result2.getCenter())/
-					       CDataSet::getInstance().getDistanceBetweenChip() );
+      CDataSet::getInstance().setWidthOfPixel(CDataSet::getInstance().getDistanceBetweenChip()/
+					      result1.getCenter().getDist(result2.getCenter()));
+      std::ostringstream ostm;
+      ostm<<"widthOfPiexl"<<CDataSet::getInstance().getWidthOfPixel();
+      m_pList->addItem(QString::fromStdString(ostm.str()));
+
     }
 
     
@@ -266,16 +270,20 @@ CSettingBaseAndChip::CSettingBaseAndChip(CPaintWidget* pPaint, QListWidget* pLis
 
 void
 CSettingBaseAndChip::setBaseArea(){
+
   const QRect& l_rectSelected = m_pPaint->getSelectedRect();
-#if 1
-  m_pPaint->setBase(l_rectSelected, l_rectSelected);
-  m_pPaint->setShowMode(CPaintWidget::withBase);
-  m_pPaint->refreshPaint();
-#else
   imgRect roi = imgRect(l_rectSelected.top(),
 			  l_rectSelected.bottom(),
 			  l_rectSelected.left(),
 			  l_rectSelected.right());
+  
+#if 1
+  CDataSet::getInstance().setBaseRect(roi);
+  m_pPaint->setBase(l_rectSelected, l_rectSelected);
+  m_pPaint->setShowMode(CPaintWidget::withBase);
+  m_pPaint->refreshPaint();
+#else
+
   imgRect result;
   int err;
   if (0 != (err =imgBaseLocate(CCamera::getInstance().getData(),
@@ -336,7 +344,7 @@ CSettingBaseAndChip::setChipArea(){
 
     double diff = imgGetDiff(result.getCenter());
     std::ostringstream ost;
-    ost<<"result" << diff;
+    ost<<"result= " << diff;
     m_pList->addItem(QString::fromStdString(ost.str()));
     
     
